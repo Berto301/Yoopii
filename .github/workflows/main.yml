@@ -23,5 +23,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Deploy Yoopii to netlify
         run: curl -X POST -d {} ${{secrets.NETLIFY_SECRET}}
-
+      #Build & Push Image
+      - name: Build & Push Image
+        run: |
+          echo "${{ secrets.DOCKERPW }}" | docker login -u "berto301" --password-stdin
+          docker image build -t berto301/yoopii-front:latest .
+          docker push berto301/yoopii-front:latest
      
