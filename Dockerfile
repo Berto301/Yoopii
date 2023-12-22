@@ -1,19 +1,32 @@
-# Use an official Node.js image with version 16.18.1 and Alpine Linux
 FROM node:16.18.1-alpine
+# set working directory
+WORKDIR /app
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# install and cache app dependencies
+COPY package.json /app/package.json
+RUN npm install
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
-RUN  ls -l
-# install package
-RUN npm install && npm cache clean --force && npm install -g typescript
-# Build the Vue.js application
+# add app
+COPY . /app
+
+# generate build
 RUN npm run build
 
-# Expose the port the app will run on 5173
-EXPOSE 5173
+############
+### prod ###
+############
 
-# Define the command to run the application
-CMD ["npm", "run", "dev"]
+# base image
+FROM nginx:alpine
+
+# copy artifact build from the 'build environment'
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# expose port 80
+EXPOSE 80
+
+# run nginx
+CMD ["nginx", "-g", "daemon off;"]
+
+# docker build -t vue-prod -f Dockerfile-build-app .
+# docker run -itd -p 8080:80 vue-prod
