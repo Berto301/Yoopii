@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # install package
-RUN npm install
+RUN npm install && npm cache clean --force && npm install -g typescript
 # Build the Vue.js application
 RUN npm run build
 
