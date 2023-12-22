@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+# install package
+RUN npm install
 # Build the Vue.js application
 RUN npm run build
 
