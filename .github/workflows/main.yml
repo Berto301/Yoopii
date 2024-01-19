@@ -27,6 +27,6 @@ jobs:
       - name: Build & Push Image
         run: |
           echo "${{ secrets.DOCKERPW }}" | docker login -u "berto301" --password-stdin
-          docker image build -t yoopii .
-          docker push yoopii
+          docker image build -t berto301/yoopii-front:yoopii .
+          docker push berto301/yoopii-front:yoopii
      
