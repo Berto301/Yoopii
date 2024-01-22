@@ -1,18 +1,16 @@
-<script setup lang="ts">
+<script setup>
+import ListBox from "../../components/designSystem/ListBox.vue"
+import Button from "../../components/designSystem/Button.vue"
+import Input from "../../components/designSystem/Input.vue"
 </script>
 
 <template>
-  <nav class="flex p-2 items-center justify-between bg-lightbrown">
-    <div class="flex items-center">
-        <img src="../../assets/logo/yoopii.png" class="object-cover"/>
-        <span class="block text-lightbrown text-sm">Yoopii</span>
-    </div>
-    <div class="flex items-center space-x-2  text-blackgray text-xs">
-        <a class="no-underline hover:text-lightbrown">Home</a>
-        <a class="no-underline hover:text-lightbrown">About</a>
-        <a class="no-underline hover:text-lightbrown">Property</a>
-        <a class="no-underline hover:text-lightbrown">Terrain</a>
-        <a class="no-underline hover:text-lightbrown">Agents</a>
-    </div>
-  </nav>
+  <div class="flex space-x-4 items-center justify-between bg-lightbrown mt-4 p-4 m-8">
+    <Input placeholder="keywords" />
+    <ListBox />
+    <ListBox />
+    <Button type="button" color="black">
+      Search
+    </Button>
+  </div>
 </template>

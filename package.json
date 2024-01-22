@@ -16,9 +16,13 @@
     "style": "npx tailwindcss -i ./src/assets/main.css -o ./src/assets/tailwind.css --watch"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.16",
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@headlessui/vue": "^1.7.17",
     "autoprefixer": "^10.4.16",
+    "date-fns": "^3.3.0",
+    "moment-timezone": "^0.5.44",
     "pinia": "^2.1.7",
+    "postcss": "^8.4.33",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },
