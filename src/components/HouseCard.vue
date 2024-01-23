@@ -36,7 +36,7 @@ import HouseImage from '../assets/images/home.jpg'
                         />
                         </svg>
                     </span>
-                    <span class="text-sm font-normal text-gray-400"> Antsirabe 301</span>
+                    <span class="text-sm font-normal text-blackgray"> Antsirabe 301</span>
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-2"> 
@@ -45,7 +45,7 @@ import HouseImage from '../assets/images/home.jpg'
                                 <path fill="#9D5D43" d="M3 5V19M3 16H21M21 19V13.2C21 12.0799 21 11.5198 20.782 11.092C20.5903 10.7157 20.2843 10.4097 19.908 10.218C19.4802 10 18.9201 10 17.8 10H11V15.7273M7 12H7.01M8 12C8 12.5523 7.55228 13 7 13C6.44772 13 6 12.5523 6 12C6 11.4477 6.44772 11 7 11C7.55228 11 8 11.4477 8 12Z" stroke="#9D5D43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
-                        <span>3 Beds</span>
+                        <span class="text-blackgray font-normal text-sm">3 Beds</span>
                     </div>
                     <div class="flex items-center space-x-2"> 
                         <span class="w-5 h2">
@@ -53,7 +53,7 @@ import HouseImage from '../assets/images/home.jpg'
                                 <path fill="#9D5D43" d="M464,280H80V100A51.258,51.258,0,0,1,95.113,63.515l.4-.4a51.691,51.691,0,0,1,58.6-10.162,79.1,79.1,0,0,0,11.778,96.627l10.951,10.951-20.157,20.158,22.626,22.626,20.157-20.157h0L311.157,71.471h0l20.157-20.157L308.687,28.687,288.529,48.844,277.578,37.893a79.086,79.086,0,0,0-100.929-8.976A83.61,83.61,0,0,0,72.887,40.485l-.4.4A83.054,83.054,0,0,0,48,100V280H16v32H48v30.7a23.95,23.95,0,0,0,1.232,7.589L79,439.589A23.969,23.969,0,0,0,101.766,456h12.9L103,496h33.333L148,456H356.1l12,40H401.5l-12-40h20.73A23.969,23.969,0,0,0,433,439.589l29.766-89.3A23.982,23.982,0,0,0,464,342.7V312h32V280ZM188.52,60.52a47.025,47.025,0,0,1,66.431,0L265.9,71.471,199.471,137.9,188.52,126.951A47.027,47.027,0,0,1,188.52,60.52ZM432,341.4,404.468,424H107.532L80,341.4V312H432Z" />
                             </svg>
                         </span>
-                        <span>3 Baths</span>
+                        <span class="text-blackgray font-normal text-sm">3 Baths</span>
                     </div>
                     <div class="flex items-center space-x-2"> 
                         <span class="w-5 h2 -rotate-90">
@@ -70,7 +70,7 @@ import HouseImage from '../assets/images/home.jpg'
                                 </g>
                             </svg>
                         </span>
-                        <span>1000 m2</span>
+                        <span class="text-blackgray font-normal text-sm">1000 m2</span>
                     </div>
                 </div>
             </div>
