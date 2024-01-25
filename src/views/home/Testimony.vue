@@ -1,10 +1,14 @@
 <script setup>
 import Agent from "../../assets/images/agent.jpg";
 import Dots from "../../assets/images/dots.png"
+
+defineProps({
+  ref:String
+})
 </script>
 
 <template>
-  <div class="py-32 flex">
+  <div class="pt-32 pb-8 flex" id="#section_testimony" :ref="ref">
     <div class="w-1/5" :style="{ backgroundImage: 'url(' + Dots + ')' }">
 
     </div>

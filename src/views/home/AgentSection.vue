@@ -1,8 +1,8 @@
 <script setup>
 import AgentCard from "../../components/AgentCards.vue"
 import 'vue3-carousel/dist/carousel.css'
-
 import { Carousel, Pagination, Slide } from 'vue3-carousel'
+
 const agents = [
   {
     _id:1,
@@ -33,7 +33,7 @@ const agents = [
 </script>
 
 <template #addons>
-  <div class="mt-16">
+  <div class="mt-16" id="#section_agents">
     <div class="w-full text-center">
         <h1 class="text-black font-semibold text-2xl"> Property and Terrain Agent</h1>
         <h5 class="text-blackgray font-normal text-sm">Let's contact an Agent with our platform</h5>

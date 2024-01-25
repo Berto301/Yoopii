@@ -3,6 +3,10 @@ import { onMounted, ref } from 'vue';
 
 defineProps({
     modelValue: String,
+    className:{
+        type:String,
+        default:"border-gray-300 rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+    }
 });
 
 defineEmits(['update:modelValue']);
@@ -21,7 +25,7 @@ defineExpose({ focus: () => input.value.focus() });
 <template>
     <input
         ref="input"
-        class="border-gray-300 rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+        :class="className"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
     >

@@ -1,9 +1,12 @@
 <script setup>
 const currentYear = new Date().getFullYear();
 import Dots from "../../assets/images/dots.png";
-import Input from "../../components/designSystem/Input.vue"
-import TextArea from "../../components/designSystem/TextArea.vue"
-import Button from "../../components/designSystem/Button.vue"
+import Input from "../../components/designSystem/Input.vue";
+import TextArea from "../../components/designSystem/TextArea.vue";
+import Button from "../../components/designSystem/Button.vue";
+defineProps({
+  dataHeader: Object,
+});
 </script>
 
 <template>
@@ -112,42 +115,49 @@ import Button from "../../components/designSystem/Button.vue"
         </div>
         <div class="w-1/3 flex flex-col space-y-4">
           <span class="text-2xl font-medium"> Quick Links </span>
-          <div class="flex flex-col space-y-2"> 
-            <a
-            class="no-underline hover:text-lightbrown hover:bg-transparent text-blackgray text-xs cursor-pointer"
-            >Home</a
-          >
-          <a
-            class="no-underline hover:text-lightbrown hover:bg-transparent text-blackgray text-xs cursor-pointer"
-            >About</a
-          >
-          <a
-            class="no-underline hover:text-lightbrown hover:bg-transparent text-blackgray text-xs cursor-pointer"
-            >Property</a
-          >
-          <a
-            class="no-underline hover:text-lightbrown hover:bg-transparent text-blackgray text-xs cursor-pointer"
-            >Terrain</a
-          >
-          <a
-            class="no-underline hover:text-lightbrown hover:bg-transparent text-blackgray text-xs cursor-pointer"
-            >Agents</a
-          >
+          <div class="flex flex-col space-y-2">
+            <button
+              @click="dataHeader.homeClick"
+              class="flex hover:text-lightbrown hover:bg-transparent text-white text-xs cursor-pointer"
+            >
+              Home
+            </button>
+            <button
+              @click="dataHeader.terrainClick"
+              class="flex hover:text-lightbrown hover:bg-transparent text-white text-xs cursor-pointer"
+            >
+              Property & Terrain
+            </button>
+            <button
+              @click="dataHeader.agentsClick"
+              class="flex hover:text-lightbrown hover:bg-transparent text-white text-xs cursor-pointer"
+            >
+              Agents
+            </button>
+            <button
+              @click="dataHeader.testimonyClick"
+              class="flex hover:text-lightbrown hover:bg-transparent text-white text-xs cursor-pointer"
+            >
+              Testimony
+            </button>
+            <button
+              @click="dataHeader.aboutClick"
+              class="flex hover:text-lightbrown hover:bg-transparent text-white text-xs cursor-pointer"
+            >
+              About
+            </button>
           </div>
-         
         </div>
         <div class="w-1/3 flex flex-col space-y-4">
-            <div class="flex flex-col space-y-2"> 
-                <span class="text-2xl font-medium"> Newsletter </span>
-                <span class="text-sm font-normal"> Send your recommandation </span>
-            </div>
-         
+          <div class="flex flex-col space-y-2">
+            <span class="text-2xl font-medium"> Newsletter </span>
+            <span class="text-sm font-normal"> Send your recommandation </span>
+          </div>
+
           <div class="flex flex-col space-y-2 text-black pr-8">
-            <Input placeholder="Your email"/>
+            <Input placeholder="Your email" />
             <TextArea placeholder="Your feedback" />
-            <Button color="light"> 
-                Send
-            </Button>
+            <Button color="light"> Send </Button>
           </div>
         </div>
       </div>

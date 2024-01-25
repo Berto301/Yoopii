@@ -5,15 +5,40 @@ import Filter from "./Filter.vue";
 import PropretyTypes from "./PropertyTypes.vue";
 import PropretyTab from "./PropertyTab.vue";
 import HouseCard from "../../components/HouseCard.vue";
-import AgentSection from "./AgentSection.vue"
+import AgentSection from "./AgentSection.vue";
 import TestimonyVue from "./Testimony.vue";
-import Footer from "./Footer.vue"
+import Footer from "./Footer.vue";
+import About from "./About.vue";
+import { ref } from "vue";
+
+// Here's our template ref typed as HTMLElement or null
+const homeRef = ref(null);
+const aboutRef = ref(null);
+const terrainRef = ref(null);
+const agentsRef = ref(null);
+const testimonyRef = ref(null);
+
+// Using scrollIntoView() function to achieve the scrolling
+function scrollTo(view) {
+  view?.value?.scrollIntoView({ behavior: "smooth" });
+}
+const dataHeader = {
+  homeClick: () => scrollTo(homeRef),
+  aboutClick: () => scrollTo(aboutRef),
+  terrainClick: () => scrollTo(terrainRef),
+  agentsClick: () => scrollTo(agentsRef),
+  testimonyClick: () => scrollTo(testimonyRef),
+};
 </script>
 
 <template>
   <main class="flex flex-col p-4 bg-red w-full">
-    <Header />
-    <div class="min-h-screen bg-cover flex w-full">
+    <Header :dataHeader="dataHeader" />
+    <div
+      class="min-h-screen bg-cover flex w-full"
+      id="#section_home"
+      ref="homeRef"
+    >
       <div class="flex items-center justify-center w-1/2 px-12">
         <div class="flex items-start flex-col space-y-8 justify-start">
           <h1 class="text-7xl text-black font-semibold">
@@ -26,7 +51,7 @@ import Footer from "./Footer.vue"
           <h2 class="text-blackgray text-lg pr-[5%]">
             The shoorted distance between paradise and the place you call home
           </h2>
-          <Button type="button" color="light"> Get started </Button>
+          <Button type="button" color="light"> Sign in </Button>
         </div>
       </div>
       <div class="bg-cover w-1/2" id="header"></div>
@@ -55,7 +80,7 @@ import Footer from "./Footer.vue"
         </div>
       </div>
     </div>
-    <div class="mt-4 flex w-full justify-end space-x-2">
+    <div class="mt-4 flex w-full justify-end space-x-2" ref="terrainRef">
       <Button type="button" color="light"> Featured </Button>
       <Button type="button" color="white"> For sell </Button>
       <Button type="button" color="white"> Allocate </Button>
@@ -71,9 +96,16 @@ import Footer from "./Footer.vue"
     <div class="mt-4 flex justify-center w-full">
       <Button type="button" color="light"> Browse More Property </Button>
     </div>
-    <AgentSection/>
-    <TestimonyVue/>
-    <Footer/>
+    <div ref="agentsRef">
+      <AgentSection />
+    </div>
+    <div ref="testimonyRef">
+      <TestimonyVue />
+    </div>
+    <div ref="aboutRef">
+      <About />
+    </div>
+    <Footer :dataHeader="dataHeader" />
   </main>
 </template>
 <style>

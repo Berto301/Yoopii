@@ -15,7 +15,7 @@
   ])
   </script>
 <template>
-    <div class="w-full px-2 py-8 ">
+    <div class="w-full px-2 py-8 " id="#section_property">
       <TabGroup>
         <TabList class="flex items-center  space-x-1 justify-center">
           <Tab
