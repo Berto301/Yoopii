@@ -4,6 +4,9 @@ import Input from "../../components/designSystem/Input.vue"
 import Button from "../../components/designSystem/Button.vue"
 import IconFacebook from "../../components/icons/IconFacebook.vue";
 import IconGmail from "../../components/icons/IconGmail.vue";
+import { useRouter } from 'vue-router'
+const router = useRouter();
+const onSignin = ()=>  router.push("/admin");
 </script>
 
 <template>
@@ -20,7 +23,7 @@ import IconGmail from "../../components/icons/IconGmail.vue";
                 </router-link>
             </div>
             
-            <Button type="button" color="light" class="w-full"> Sign in </Button>
+            <Button type="button" color="light" class="w-full" @click="onSignin"> Sign in </Button>
             <div class="flex flex-col space-y-2 w-full"> 
                 <div class="flex justify-center w-full items-center space-x-4"> 
                     <div class="w-11 h-11 cursor-pointer">
