@@ -13,7 +13,7 @@ import IconGmail from "../../components/icons/IconGmail.vue";
         </template>
         <template #content>
             <Input placeholder="Email" className="border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-lightbrown outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"/>
-            <div class="flex flex-col space-y-2"> 
+            <div class="flex flex-col space-y-2 w-full"> 
                 <Input placeholder="Your password" className="border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-lightbrown outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"/>
                 <router-link to="/reset-password" class="-mt-1 text-xs text-blackgray font-normal cursor-pointer hover:bg-transparent hover:underline hover:decoration-lightbrown hover:text-lightbrown"> 
                     Forgot password?
