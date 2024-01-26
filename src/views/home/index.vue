@@ -51,7 +51,9 @@ const dataHeader = {
           <h2 class="text-blackgray text-lg pr-[5%]">
             The shoorted distance between paradise and the place you call home
           </h2>
-          <Button type="button" color="light"> Sign in </Button>
+          <router-link to="/sign-in" class="items-center px-4 py-2  border  rounded-md font-semibold text-[14px]  outline-none  tracking-widest transition ease-in-out duration-150 bg-[#9D5D43] hover:bg-[#a3543b] focus:bg-[#a3543b] active:bg-[#a3543b] focus:outline-none focus:ring-2  focus:ring-offset-2 border-transparent text-white"> 
+            Sign in
+          </router-link>
         </div>
       </div>
       <div class="bg-cover w-1/2" id="header"></div>
