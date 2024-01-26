@@ -5,7 +5,7 @@ import IconMessage from "../../../components/icons/IconMessage.vue";
 import Agent from "../../../assets/images/agent.jpg";
 </script>
 <template>
-  <div class="flex justify-between items-center px-6 py-7 w-full bg-[#f7f0ed] rounded-lg shadow-lg">
+  <div class="flex justify-between items-center px-6 py-7 w-full bg-white rounded-lg shadow-lg">
     <div class="w-10 h-10">
       <ButtonLeft />
     </div>

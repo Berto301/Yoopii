@@ -3,7 +3,7 @@ import HomeView from '../views/home/index.vue'
 import Login from '../views/connexion/Login.vue'
 import SignUp from "../views/connexion/Signup.vue"
 import ResetView from "../views/connexion/ResetPassword.vue"
-import Layout from "../views/admin/layout/index.vue"
+import Dashboard from "../views/admin/pages/dashboard/index.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +31,7 @@ const router = createRouter({
     {
       path:'/admin',
       name:"homeAdmin",
-      component:Layout
+      component:Dashboard
     }
     // {
     //   path: '/about',

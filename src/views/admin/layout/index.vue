@@ -7,6 +7,7 @@
         <Sidebar/>
         <div class="flex flex-col space-y-16 w-full"> 
             <Header/>
+            <slot name="content"></slot>
         </div>
     </div>
 </template>

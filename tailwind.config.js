@@ -12,6 +12,7 @@ export default {
           "lightbrown": "#9D5D43",
           "blackgray": "#191617",
           "whitehidden": "#F7F9F8",
+          "greyColor":"#5A5E62"
         },
         fonts:{
           montserrat: ["Montserrat"],
