@@ -6,7 +6,7 @@ import IconFacebook from "../../components/icons/IconFacebook.vue";
 import IconGmail from "../../components/icons/IconGmail.vue";
 import { useRouter } from 'vue-router'
 const router = useRouter();
-const onSignin = ()=>  router.push("/admin");
+const onSignin = ()=>  router.push("/admin/dashboard");
 </script>
 
 <template>

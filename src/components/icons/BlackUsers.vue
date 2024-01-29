@@ -1,19 +1,12 @@
-<script setup> 
-defineProps({
-  color:{
-    type:String,
-    default:"#9D5D43"
-  }
-})
-</script>
+
 <template>
   <svg
-    :fill="color"
+    fill="#000000"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     enable-background="new 0 0 100 100"
     xml:space="preserve"
-    :stroke="color"
+    stroke="#000000"
   >
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g

@@ -4,7 +4,10 @@ import Login from '../views/connexion/Login.vue'
 import SignUp from "../views/connexion/Signup.vue"
 import ResetView from "../views/connexion/ResetPassword.vue"
 import Dashboard from "../views/admin/pages/dashboard/index.vue"
-
+import Reports from "../views/admin/pages/Reports/index.vue"
+import Customers from "../views/admin/pages/customers/index.vue"
+import Property from "../views/admin/pages/Property/index.vue"
+import AppLayout from "../views/admin/layout/index.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -28,11 +31,50 @@ const router = createRouter({
       name:"reset-password",
       component:ResetView
     },
-    {
-      path:'/admin',
-      name:"homeAdmin",
-      component:Dashboard
-    }
+      {
+        path: '/admin',
+        name:"admin",
+        meta: {
+          requiresAuth: true,
+        },
+        component: AppLayout,
+        children: [
+          {
+            path: 'dashboard',
+            name: 'dashboard',
+            component: Dashboard,
+            meta: {
+              requiresAuth: true,
+            },
+          },
+          {
+            path: 'customers',
+            name: 'admin-customers',
+            component: Customers,
+            meta: {
+              requiresAuth: true,
+            },
+          },
+          {
+            path: 'reports',
+            name: 'admin-reports',
+            component: Reports,
+            meta: {
+              requiresAuth: true,
+            },
+          },
+          {
+            path: 'property',
+            name: 'admin-property',
+            component: Property,
+            meta: {
+              requiresAuth: true,
+            },
+          },
+          // Add more children routes as needed
+        ]
+      }
+      
     // {
     //   path: '/about',
     //   name: 'about',

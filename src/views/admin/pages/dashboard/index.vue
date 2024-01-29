@@ -1,5 +1,4 @@
 <script setup lang="jsx">
-import Layout from "../../layout/index.vue";
 import BoardCard from "../../../../components/BoardCard.vue"
 import IconSales from "../../../../components/icons/IconSales.vue";
 import IconHouse from "../../../../components/icons/IconHouse.vue"
@@ -37,8 +36,6 @@ const details=[
 ]
 </script>
 <template>
-    <Layout>
-        <template #content> 
             <div class="flex space-x-8 min-h-[calc(100vh-12rem)]"> 
                 <div class="w-2/3 flex flex-col space-y-6"> 
                     <div class="flex justify-between">
@@ -75,6 +72,4 @@ const details=[
                     </div>
                 </div>
             </div>
-        </template>
-    </Layout>
 </template>
