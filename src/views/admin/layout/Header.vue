@@ -13,9 +13,9 @@ import Notification from "./subCompononents/Notifications.vue"
     <div class="flex items-center justify-between space-x-10">
       
       <Notification/>
-      <div class="w-10 h-10">
+      <router-link to="/admin/customers" class="w-10 h-10 hover:bg-transparent">
         <IconMessage />
-      </div>
+      </router-link>
       <Menu/>
     </div>
   </div>
