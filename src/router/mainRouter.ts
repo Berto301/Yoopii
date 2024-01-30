@@ -1,5 +1,5 @@
 
-import BlackUsers from "../components/icons/BlackUsers.vue";
+import IconMessage from "../components/icons/IconMessage.vue";
 import BlackHouse from "../components/icons/BlackHouse.vue";
 import DashboardIcon from "../components/icons/IconDashboard.vue";
 import IconReport from "../components/icons/IconReport.vue";
@@ -11,8 +11,8 @@ const routes = [{
     layout: "/admin",
 },{
     path: "/customers",
-    name: "Customers",
-    icon: BlackUsers,
+    name: "Chat",
+    icon: IconMessage,
     layout: "/admin",
 },{
     path: "/property",

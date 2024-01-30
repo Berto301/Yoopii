@@ -5,7 +5,7 @@ import IconMessage from "../components/icons/IconMessage.vue";
 <template>
     <div class="flex space-x-4"> 
         <div
-            class="w-12 h-12 rounded-xl overflow-hidden shadow-lg"
+            class="w-12 h-10 mt-2 rounded-full overflow-hidden shadow-lg"
         >
             <img :src="Agent" class="bg-cover w-full h-full" />
         </div>
