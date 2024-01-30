@@ -4,6 +4,7 @@ import IconCalendar from "./icons/IconCalendar.vue";
 import IconTime from "./icons/IconTime.vue";
 import IconBill from "./icons/IconBills.vue";
 import IconLocation from "./icons/IconLocation.vue";
+import IconUser from "./icons/IconUser.vue";
 </script>
 <template>
   <div class="flex space-x-4">
@@ -29,13 +30,17 @@ import IconLocation from "./icons/IconLocation.vue";
         </div>
       </div>
       <div class="flex justify-between items-center">
-        <div class="flex space-x-1">
+        <div class="flex space-x-1 items-center">
+          <div class="w-5 h-5">
+           <IconUser/>
+          </div>
           <span class="text-xs text-greyColor font-normal">
-            <IconLocation />
+           Roberto
           </span>
-          <span class="text-xs text-greyColor font-normal">
-            Mahazoarivo, Antsirabe
-          </span>
+        </div>
+        <div class="flex space-x-1 items-center">
+          <div class="w-5 h-5"><IconLocation /></div>
+          <span class="text-xs text-greyColor font-normal"> Mahazoarivo </span>
         </div>
         <div class="flex space-x-1 items-center">
           <div class="w-5 h-5"><IconBill /></div>
