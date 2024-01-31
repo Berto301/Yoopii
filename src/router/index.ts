@@ -8,6 +8,8 @@ import Reports from "../views/admin/pages/Reports/index.vue"
 import Customers from "../views/admin/pages/customers/index.vue"
 import Property from "../views/admin/pages/Property/index.vue"
 import AppLayout from "../views/admin/layout/index.vue"
+import Terrain from "@/views/admin/pages/Terrain/index.vue"
+import Settings from "../views/admin/pages/settings/index.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -71,6 +73,22 @@ const router = createRouter({
               requiresAuth: true,
             },
           },
+          {
+            path: 'terrain',
+            name: 'admin-terrain',
+            component: Terrain,
+            meta: {
+              requiresAuth: true,
+            },
+          },
+          {
+            path: 'settings',
+            name: 'admin-settings',
+            component: Settings,
+            meta: {
+              requiresAuth: true,
+            },
+          }
           // Add more children routes as needed
         ]
       }

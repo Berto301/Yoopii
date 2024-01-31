@@ -38,7 +38,7 @@
         </TabPanels>
       </TabGroup>
     </div>
-  </template>
+</template>
   
   
   

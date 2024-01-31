@@ -1,13 +1,19 @@
 <script setup>
 import Agent from "../../../../assets/images/agent.jpg";
-import { formatRelative, subDays } from 'date-fns'
-import { enUS } from 'date-fns/locale'
+import { formatRelative, subDays } from "date-fns";
+import { enUS } from "date-fns/locale";
 import moment from "moment-timezone";
-import TextArea from "../../../../components/designSystem/TextArea.vue"
-import Button from "../../../../components/designSystem/Button.vue"
-import IconSend from "../../../../components/icons/IconSend.vue"
-import IconAttach from "../../../../components/icons/IconAttach.vue"
-import IconVisit from "../../../../components/icons/IconVisit.vue"
+import TextArea from "../../../../components/designSystem/TextArea.vue";
+import Button from "../../../../components/designSystem/Button.vue";
+import IconSend from "../../../../components/icons/IconSend.vue";
+import IconAttach from "../../../../components/icons/IconAttach.vue";
+import IconVisit from "../../../../components/icons/IconVisit.vue";
+import IconPlus from "../../../../components/icons/IconPlus.vue";
+import { ref } from "vue";
+
+const showAdd = ref(false);
+
+const handleClickPlus = () => (showAdd.value = !showAdd.value);
 </script>
 <template>
   <div class="w-1/2 relative bg-white rounded-md shadow-lg p-2">
@@ -29,38 +35,66 @@ import IconVisit from "../../../../components/icons/IconVisit.vue"
           Roberto
           <span class="font-normal ml-3">
             {{
-             formatRelative(subDays(new Date(), 3), new Date(), { locale: enUS })
+              formatRelative(subDays(new Date(), 3), new Date(), {
+                locale: enUS,
+              })
             }}
           </span>
         </span>
-        <div class="p-3 bg-lightbrown text-white font-normal text-sm rounded-lg">date-fns provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates in a browser & Node.js.</div>
+        <div
+          class="p-3 bg-lightbrown text-white font-normal text-sm rounded-lg"
+        >
+          date-fns provides the most comprehensive, yet simple and consistent
+          toolset for manipulating JavaScript dates in a browser & Node.js.
+        </div>
       </div>
-      <div class="w-full flex justify-end "> 
-        <div class="flex max-w-[80%] flex-col space-y-1"> 
+      <div class="w-full flex justify-end">
+        <div class="flex max-w-[80%] flex-col space-y-1">
           <span class="text-lightbrown text-xs font-semibold">
             Me
             <span class="font-normal ml-3">
-              {{
-               formatRelative(new Date(),new Date(), { locale: enUS })
-              }}
+              {{ formatRelative(new Date(), new Date(), { locale: enUS }) }}
             </span>
           </span>
-          <div class="p-3 bg-gray-300 text-lightbrown font-normal text-sm rounded-lg">date-fns provides the most comprehensive, yet simple and consistent toolset for manipulating JavaScript dates in a browser & Node.js</div>
+          <div
+            class="p-3 bg-gray-300 text-lightbrown font-normal text-sm rounded-lg"
+          >
+            date-fns provides the most comprehensive, yet simple and consistent
+            toolset for manipulating JavaScript dates in a browser & Node.js
+          </div>
         </div>
       </div>
     </div>
     <!--CONTENT SEND-->
-    <div class="absolute bottom-0 px-2 py-3 w-[98%]"> 
-      <TextArea class="w-full border border-solid border-gray-300" placeholder="Say something"/> 
+    <div class="absolute bottom-0 px-2 py-3 w-[98%]">
+      <TextArea
+        class="w-full border border-solid border-gray-300"
+        placeholder="Say something"
+      />
       <div class="flex justify-between items-center">
-        <div class="w-8 h-8 cursor-pointer"> 
-         <IconVisit/>
+        <div class="w-8 h-8 cursor-pointer relative" @click="handleClickPlus">
+          <IconPlus />
+          <div
+            :class="`  transition-transform duration-300 ease-in absolute flex space-x-2 items-center justify-start -bottom-3 -left-8 ${
+              showAdd
+                ? 'translate-x-full w-20 h-20  p-2'
+                : 'translate-x-0 w-0 overflow-hidden'
+            }`"
+          > 
+            <div class="w-full h-full flex items-end mt-4 space-x-2"> 
+              <div class="w-10 h-10 cursor-pointer">
+                <IconVisit />
+              </div>
+              <div class="w-10 h-10 cursor-pointer">
+              <IconAttach />
+            </div>
+            </div>
+           
+          </div>
         </div>
-        <div class="w-8 h-8 cursor-pointer"> 
-          <IconAttach/>
-        </div>
-        <div class="w-8 h-8 cursor-pointer"> 
-          <IconSend/>
+
+        <div class="w-8 h-8 cursor-pointer">
+          <IconSend />
         </div>
       </div>
     </div>
