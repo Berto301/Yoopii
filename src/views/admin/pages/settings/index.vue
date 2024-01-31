@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import UserProfile from "./userProfile/index.vue"
-import Enterprise from "./Enterprise.vue"
+import Enterprise from "./Enterprise/index.vue"
 import Others from "./Others.vue"
 const categories = ref([
   {
@@ -12,10 +12,6 @@ const categories = ref([
   {
     id: 2,
     name: "Enterprise Profile",
-  },
-  {
-    id: 3,
-    name: "Agents Management",
   },
   {
     id: 4,
@@ -45,15 +41,12 @@ const categories = ref([
         </Tab>
       </TabList>
 
-      <TabPanels class="mt-2 px-2 min-h-[calc(100vh-15rem)] overflow-hidden">
+      <TabPanels class="mt-2 px-2 h-[calc(100vh-15rem)] overflow-hidden overflow-y-auto">
         <TabPanel>
           <UserProfile />
         </TabPanel>
         <TabPanel>
           <Enterprise />
-        </TabPanel>
-        <TabPanel>
-          <Others />
         </TabPanel>
         <TabPanel>
           <Others />
