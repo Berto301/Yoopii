@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import UserProfile from "./userProfile/index.vue"
 import Enterprise from "./Enterprise/index.vue"
-import Others from "./Others.vue"
+import Others from "./Others/index.vue"
 const categories = ref([
   {
     _id: 1,

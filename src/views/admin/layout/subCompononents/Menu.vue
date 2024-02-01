@@ -22,11 +22,12 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'</script>
       >
         <div class="px-1 py-1">
           <MenuItem v-slot="{ active }">
-            <button
+            <router-link
               :class="[
                 active ? 'bg-lightbrown text-white' : 'text-blackgray',
-                'group flex w-full items-center rounded-md px-2 py-2 text-sm font-medium transition duration-150 ease-in-out ',
+                'group flex w-full items-center rounded-md px-2 py-2 text-sm font-medium transition duration-150 ease-in-out hover:bg-lightbrown hover:text-white',
               ]"
+              to="/admin/settings"
             >
               <div class="w-6 h-6 mr-4">
                 <svg
@@ -59,7 +60,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'</script>
                 </svg>
               </div>
               Edit
-            </button>
+            </router-link>
           </MenuItem>
         </div>
         <div class="px-1 py-1">

@@ -22,15 +22,15 @@ import IconGmail from "@/components/icons/IconGmail.vue";
           <div class="flex flex-wrap">
             <Input
               placeholder="Actual Password"
-              className=" w-[32%] h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-lightbrown outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"
+              className=" w-[32%] h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"
             />
             <Input
               placeholder="New Password"
-              className=" w-[32%] h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-lightbrown outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"
+              className=" w-[32%] h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"
             />
             <Input
               placeholder="Confirm Password"
-              className=" w-[32%] h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-lightbrown outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"
+              className=" w-[32%] h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"
             />
             <!-- <Button type="button" color="light" class="w-[24%] h-14 mb-0 mt-2">
               Update
