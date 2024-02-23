@@ -10,6 +10,15 @@ export default defineConfig({
     vue(),
     vueJsx(),
   ],
+  server: {
+    proxy: {
+      '/graphql': {
+        target: 'http://localhost:3000/graphql',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

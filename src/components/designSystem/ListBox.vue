@@ -7,37 +7,33 @@
     ListboxOption
   } from "@headlessui/vue";
   import { ref } from 'vue'
-defineProps({
+const props = defineProps({
     lists: {
         type: Array,
         default: [],
     },
-    color:{
-        type:String,
-        default:"primary"
-    },
-    
+    selected:Object,
+    modelValue:{
+      type: String,
+      default: "type"
+    }
 });
 
-
-const people = [
-  { id: 1, name: 'Durward Reynolds', unavailable: false },
-  { id: 2, name: 'Kenton Towne', unavailable: false },
-  { id: 3, name: 'Therese Wunsch', unavailable: false },
-  { id: 4, name: 'Benedict Kessler', unavailable: true },
-  { id: 5, name: 'Katelyn Rohan', unavailable: false },
-]
-const selectedPerson = ref(people[0])
+const {
+lists,
+selected
+} = props
+const selectedValue = ref(selected)
 
 </script>
 <template>
    <div class="w-full">
-    <Listbox v-model="selectedPerson">
+    <Listbox v-model="selectedValue">
       <div class="relative">
         <ListboxButton
           class="w-full h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10"
         >
-          <span class="block truncate">{{ selectedPerson.name }}</span>
+          <span class="block truncate">{{ selectedValue.name }}</span>
           <span
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
           >
@@ -55,15 +51,16 @@ const selectedPerson = ref(people[0])
           >
             <ListboxOption
               v-slot="{ active, selected }"
-              v-for="person in people"
-              :key="person.name"
-              :value="person"
+              v-for="item in lists"
+              :key="item._id"
+              :value="item"
               as="template"
+              @click="$emit('handleClick', item)"
             >
               <li
                 :class="[
-                  active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
-                  'relative cursor-default select-none py-2 pl-10 pr-4',
+                  active ? 'bg-lightbrown text-blackgray' : 'text-gray-900',
+                  'relative cursor-pointer select-none py-2 pl-10 pr-4 hover:bg-lightbrown hover:text-white',
                 ]"
               >
                 <span
@@ -71,14 +68,9 @@ const selectedPerson = ref(people[0])
                     selected ? 'font-medium' : 'font-normal',
                     'block truncate',
                   ]"
-                  >{{ person.name }}</span
+                  >{{ item.name }}</span
                 >
-                <span
-                  v-if="selected"
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
-                >
-                  <CheckIcon class="h-5 w-5" aria-hidden="true" />
-                </span>
+                
               </li>
             </ListboxOption>
           </ListboxOptions>

@@ -1,0 +1,33 @@
+mutation createUser(
+    $name: String!
+    $email: String!
+    $password: String!
+){
+    createUser(
+        enabled: true
+        personnalInfo: {
+        name: $name
+        firstname: "-"
+        profesionnalName: $name
+        gender: "male"
+        adress: "123 Main St"
+        dateOfBirth: "1990-01-01"
+        }
+        email: $email
+        password: $password
+        permissions: [
+        "dashboard"
+        "chat"
+        "property"
+        "terrain"
+        "reports"
+        "settings"
+        ]
+        licence: { NIF_STAT: "0000", deliveryPlace: "-", deleiveryDate: "-" }
+        accountSettings: {
+        language: "en"
+        facebookSynchronisation: "-"
+        googleSynchronisation: "-"
+        }
+    )
+}
