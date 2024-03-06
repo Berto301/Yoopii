@@ -1,6 +1,10 @@
 <script setup>
 import Agent from "../../../../assets/images/agent.jpg";
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'</script>
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import {useAuth} from "@/stores/index.ts"
+
+const {logout}  = useAuth()
+</script>
 <template>
   <Menu as="div" class="relative flex items-center justify-center flex-col">
     <MenuButton
@@ -65,12 +69,12 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'</script>
         </div>
         <div class="px-1 py-1">
           <MenuItem v-slot="{ active }">
-            <router-link
+            <div
               :class="[
                 active ? 'bg-lightbrown text-white' : 'text-blackgray',
                 'group flex w-full items-center hover:bg-lightbrown rounded-md px-2 py-2 text-sm font-medium transition duration-150 ease-in-out ',
               ]"
-              to="/sign-in"
+              @click="logout"
             >
               <div class="w-6 h-6 mr-4">
                 <svg
@@ -102,7 +106,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'</script>
                 </svg>
               </div>
               Logout
-            </router-link>
+            </div>
           </MenuItem>
         </div>
       </MenuItems>

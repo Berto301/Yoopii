@@ -1,8 +1,17 @@
 <script setup>
 import DashboardIcon from "../../../components/icons/IconDashboard.vue" 
-defineProps({
-    routes:[]
-})
+import { useAuth } from "@/stores/index.ts"
+import { onMounted, ref, defineProps } from "vue";
+const props = defineProps({
+    routes: {
+        type: Array,
+        required: true
+    }
+});
+
+const permissions = ref(JSON.parse(localStorage.getItem("user"))?.permissions);
+const routes = props.routes.filter(route => permissions?.value.includes(route.key));
+
 </script>
 <template>
     <div class=" w-60 rounded-lg shadow-lg bg-white flex flex-col space-y-16 p-4">
