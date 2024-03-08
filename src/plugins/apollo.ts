@@ -28,6 +28,7 @@ import {
     return {
       headers: {
         ...headers,
+        withCredentials:false,
         authorization: localStorage.getItem("token"),
       },
     };
