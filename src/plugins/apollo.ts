@@ -25,13 +25,10 @@ import {
   });
   
   const authLink = setContext((_, { headers }) => {
-    console.log({headers})
     return {
       headers: {
         ...headers,
-       // withCredentials:false,
-        authorization: localStorage.getItem("token"),
-          "Content-type": "application/json",
+        authorization: localStorage.getItem("token")
       },
     };
   });

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { MUTATE_LOGIN } from "@/graphql/index.ts";
+import { MUTATE_LOGIN,MUTATE_INSERT_USERS } from "@/graphql/index.ts";
 import apolloClient from "../plugins/apollo";
 import gql from "graphql-tag";
 import { useRouter } from 'vue-router';
@@ -30,7 +30,23 @@ export const useAuth = defineStore('auth', () => {
           console.error("Error during sign-in:", error);
         }
     }
+    async function register (name:String,email:String,password:String){
+      try {
+         const {createUser} = (await apolloClient.mutate({
+          mutation:MUTATE_INSERT_USERS,
+          variables:{
+            name,
+            email,
+            password
+          }
+         }))?.data
 
+         if (!createUser) return;
+         router.push("/sign-in");
+      } catch (error) {
+        console.error("Error during sign-up:", error);
+      }
+    }
     async function logout() {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
@@ -39,6 +55,6 @@ export const useAuth = defineStore('auth', () => {
           await apolloClient.resetStore();
 
       }
-    return {login , userConnected:currentUser,logout}
+    return {login , userConnected:currentUser,logout,register}
   })
   

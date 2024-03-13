@@ -11,6 +11,7 @@ import { useMutation } from "@vue/apollo-composable";
 // import CREATE_USER_MUTATION from "../../graphql/mutations.gql"
 import { MUTATE_INSERT_USERS } from "@/graphql/index.ts";
 import { useRouter } from "vue-router";
+import { useAuth } from "@/stores/index.ts";
 const TYPE_LIST = [
   {
     _id: "user",
@@ -40,29 +41,19 @@ const getSelected = (params) => {
   users.value.accountType = params;
 };
 
-const { mutate, onDone } = useMutation(MUTATE_INSERT_USERS);
+const authStore = useAuth();
 
-const register = async () => {
+const onRegister = async () => {
   try {
-    // Appelez la fonction mutate avec les variables nécessaires
-    const result = await mutate({
-      // Assurez-vous de passer les variables nécessaires pour la mutation
-      name: users.value.name,
-      email: users.value.email,
-      password: users.value.password,
-    });
+    await authStore.register(
+      users.value.name,
+      users.value.email,
+      users.value.password,
+  );
   } catch (error) {
-    // Gérez les erreurs ici
-    console.error("Error during mutation:", error);
+    console.error("Error during sign-in:", error);
   }
 };
-
-onDone((_result) => {
-  if (_result?.data?.createUser?.token) {
-    router.push("/sign-in");
-    users.value = {};
-  }
-});
 
 // Utilisez useMutation pour obtenir la fonction mutate
 </script>
@@ -121,7 +112,7 @@ onDone((_result) => {
           className="border h-14 placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
         />
       </div>
-      <Button type="button" color="light" class="w-full" @click="register">
+      <Button type="button" color="light" class="w-full" @click="onRegister">
         Register
       </Button>
       <div class="flex flex-col space-y-2 w-full">
