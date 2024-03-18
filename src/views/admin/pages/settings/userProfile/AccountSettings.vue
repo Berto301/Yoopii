@@ -5,6 +5,17 @@ import ListBox from "@/components/designSystem/ListBox.vue";
 import Button from "@/components/designSystem/Button.vue";
 import IconFacebook from "@/components/icons/IconFacebook.vue";
 import IconGmail from "@/components/icons/IconGmail.vue";
+
+const LANGUAGE = [
+  {
+    _id: "fr",
+    name: "Fr",
+  },
+  {
+    _id: "en",
+    name: "En",
+  }
+];
 </script>
 <template>
   <Disclosure>
@@ -14,7 +25,7 @@ import IconGmail from "@/components/icons/IconGmail.vue";
         <div class="flex flex-col space-y-2">
           <Label value="Language" />
           <div class="w-72">
-            <ListBox />
+            <ListBox :lists="LANGUAGE" :selected="LANGUAGE[0]"/>
           </div>
         </div>
         <div class="flex flex-col space-y-2">

@@ -1,7 +1,7 @@
 <script setup>
 import Disclosure from "@/components/Disclosure.vue";
 import Label from "@/components/designSystem/Label.vue";
-import ListBox from "@/components/designSystem/ListBox.vue";
+// import ListBox from "@/components/designSystem/ListBox.vue";
 import Button from "@/components/designSystem/Button.vue";
 </script>
 <template>
