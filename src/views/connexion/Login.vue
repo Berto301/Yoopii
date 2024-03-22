@@ -1,14 +1,17 @@
 <script setup>
 import Layout from "./Layout.vue";
-import Input from "../../components/designSystem/Input.vue";
-import Button from "../../components/designSystem/Button.vue";
-import IconFacebook from "../../components/icons/IconFacebook.vue";
-import IconGmail from "../../components/icons/IconGmail.vue";
+import Input from "@/components/designSystem/Input.vue";
+import Button from "@/components/designSystem/Button.vue";
+import IconFacebook from "@/components/icons/IconFacebook.vue";
+import InputsValidation from "@/components/designSystem/Validation.vue"
+import IconGmail from "@/components/icons/IconGmail.vue";
 import { useRouter } from "vue-router";
 import { useMutation } from "@vue/apollo-composable";
 import { MUTATE_LOGIN } from "@/graphql/index.ts";
-import { ref } from "vue";
-import {useAuth} from "@/stores/index.ts"
+import { onBeforeUnmount, onUpdated, ref } from "vue";
+import {useAuth,useErrors} from "@/stores/index.ts"
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 const router = useRouter();
 
 const auth = ref({
@@ -18,17 +21,30 @@ const auth = ref({
 
 
 const authStore = useAuth();
+const errors = useErrors()
 
+const errorsRef = ref()
 const onSignin = async () => {
-  try {
+  // try {
+    errors.$reset();
     await authStore.login({
       email: auth.value.email,
       password: auth.value.password
     })
-  } catch (error) {
-    console.error("Error during sign-in:", error);
-  }
+    if(errors.fields){
+      toast.error("An error occured!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      errorsRef.value = errors.fields
+    }
 };
+onBeforeUnmount(() => errors.$reset());
+
+onUpdated(()=> {
+  console.log("parent Updated")
+  errors.$reset()
+  errorsRef.value = {}
+})
 
 </script>
 
@@ -40,15 +56,23 @@ const onSignin = async () => {
     <template #content>
       <Input
         placeholder="Email"
+        type="email"
+        :invalid="Boolean(errorsRef?.input?.email)"
         v-model="auth.email"
-        className="border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
       />
+      <div class="!mt-0">
+        <inputs-validation :error="errors.fields.input.email" />
+      </div>
       <div class="flex flex-col space-y-2 w-full">
         <Input
           v-model="auth.password"
+          type="password"
+          :invalid="Boolean(errorsRef?.input?.password)"
           placeholder="Your password"
-          className="border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
         />
+        <div class="!mt-0">
+          <inputs-validation :error="errors.fields.input.password" />
+        </div>
         <router-link
           to="/reset-password"
           class="-mt-1 text-xs text-blackgray font-normal cursor-pointer hover:bg-transparent hover:underline hover:decoration-lightbrown hover:text-lightbrown"
@@ -86,6 +110,6 @@ const onSignin = async () => {
 </template>
 <style>
 #header {
-  background-image: url("../../assets/images/hero-bg.jpg");
+  background-image: url("@/assets/images/hero-bg.jpg");
 }
 </style>

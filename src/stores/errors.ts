@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useErrorsStore = defineStore("errors", {
+export const useErrors = defineStore("errors", {
   state: () => ({
     message: null,
     category: null,

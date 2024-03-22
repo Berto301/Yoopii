@@ -4,22 +4,23 @@ import {
     InMemoryCache,
   } from "@apollo/client/core";
   import { onError } from "@apollo/client/link/error";
-  import { useErrorsStore } from "@/stores/errors";
+  import { useErrors } from "@/stores/errors";
   import { setContext } from "@apollo/client/link/context";
   
   console.log({uri: import.meta.env.VITE_GRAPHQL_URL})
   // HTTP connection to the API
   const httpLink = createHttpLink({
-    // You should use an absolute URL here
     uri: import.meta.env.VITE_GRAPHQL_URL,
     credentials: "include",
   });
   
   const errorHandler = onError(({ graphQLErrors }) => {
+    
+    console.log({fields: graphQLErrors[0].extensions?.validation})
     if (graphQLErrors)
-      useErrorsStore().$state = {
+    useErrors().$state = {
         message: graphQLErrors[0].message,
-        category: graphQLErrors[0].extensions.category,
+        // category: graphQLErrors[0].extensions.category,
         fields: graphQLErrors[0].extensions.validation ?? { input: {} },
       };
   });
