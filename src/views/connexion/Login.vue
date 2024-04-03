@@ -25,7 +25,6 @@ const errors = useErrors()
 
 const errorsRef = ref()
 const onSignin = async () => {
-  // try {
     errors.$reset();
     await authStore.login({
       email: auth.value.email,
@@ -39,12 +38,6 @@ const onSignin = async () => {
     }
 };
 onBeforeUnmount(() => errors.$reset());
-
-onUpdated(()=> {
-  console.log("parent Updated")
-  errors.$reset()
-  errorsRef.value = {}
-})
 
 </script>
 

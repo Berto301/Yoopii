@@ -23,7 +23,7 @@ mutation createUser(
         "reports"
         "settings"
         ]
-        licence: { NIF_STAT: "0000", deliveryPlace: "-", deleiveryDate: "-" }
+        licence: { NIF_STAT: "0000", deliveryPlace: "-", deliveryDate: "-" }
         accountSettings: {
         language: "en"
         facebookSynchronisation: "-"

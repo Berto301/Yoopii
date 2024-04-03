@@ -9,9 +9,13 @@ import { ref } from "vue";
 import { useMutation } from "@vue/apollo-composable";
 //import gql from "graphql-tag";
 // import CREATE_USER_MUTATION from "../../graphql/mutations.gql"
-import { MUTATE_INSERT_USERS } from "@/graphql/index.ts";
+// import { MUTATE_INSERT_USERS } from "@/graphql/index.ts";
+import InputsValidation from "@/components/designSystem/Validation.vue"
 import { useRouter } from "vue-router";
-import { useAuth } from "@/stores/index.ts";
+import { useAuth,useErrors } from "@/stores/index.ts";
+import {isEqual} from 'lodash'
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 const TYPE_LIST = [
   {
     _id: "user",
@@ -42,20 +46,38 @@ const getSelected = (params) => {
 };
 
 const authStore = useAuth();
+const errors = useErrors()
+const errorsRef = ref()
 
 const onRegister = async () => {
   try {
+    errors.$reset();
     await authStore.register(
       users.value.name,
       users.value.email,
       users.value.password,
   );
+  
+  if(errors.fields){
+    errorsRef.value = errors.fields
+    if(errors.fields.input.email || errors.fields.input.name || errors.fields.input.password ){
+      return toast.error("An error occured", {
+          position: toast.POSITION.TOP_RIGHT,
+        })
+    }else{
+      return toast.error("User already exists", {
+          position: toast.POSITION.TOP_RIGHT,
+      })
+    }
+  }
+  toast.success("User registered succesfully", {
+    position: toast.POSITION.TOP_RIGHT,
+  })
   } catch (error) {
-    console.error("Error during sign-in:", error);
+    console.error("Error during sign-up:", error);
   }
 };
 
-// Utilisez useMutation pour obtenir la fonction mutate
 </script>
 
 <template>
@@ -70,25 +92,30 @@ const onRegister = async () => {
           placeholder="Email"
           type="email"
           v-model="users.email"
-          className="border h-14 placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+          :invalid="Boolean(errorsRef?.input?.email)"
         />
+        <inputs-validation :error="errors.fields.input.email" />
         <Input
           placeholder="Name"
           v-model="users.name"
-          className="border h-14 placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+          :invalid="Boolean(errorsRef?.input?.name)"
         />
+        <inputs-validation :error="errors.fields.input.name" />
         <Input
           placeholder="Your password"
           type="password"
           v-model="users.password"
-          className="border h-14 placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+          :invalid="Boolean(errorsRef?.input?.password)"
+         
         />
+        <inputs-validation :error="errors.fields.input.password" />
         <Input
           placeholder="Confirm password"
           type="password"
           v-model="users.checkPassword"
-          className="border h-14 placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+          :invalid="Boolean(errorsRef?.input?.password)"
         />
+        <inputs-validation :error="errors.fields.input.password" />
         <Listbox
           :lists="TYPE_LIST"
           :selected="users.accountType"
@@ -103,13 +130,13 @@ const onRegister = async () => {
         <Input
           placeholder="Name"
           v-model="enterprise.name"
-          className="border h-14 placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+         
         />
         <Input
           placeholder="Email"
           type="email"
           v-model="enterprise.email"
-          className="border h-14 placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md w-full shadow-sm py-[0.4rem] pl-3 pr-10"
+         
         />
       </div>
       <Button type="button" color="light" class="w-full" @click="onRegister">

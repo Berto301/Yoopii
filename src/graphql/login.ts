@@ -17,7 +17,7 @@ mutation login($user: LoginUserInput!) {
         licence {
           NIF_STAT
           deliveryPlace
-          deleiveryDate
+          deliveryDate
         }
         accountSettings {
           language
