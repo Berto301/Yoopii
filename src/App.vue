@@ -4,7 +4,10 @@ import { useRouter } from "vue-router";
 
 const router = useRouter()
  onMounted(()=>{
-   router.push(localStorage.getItem("token") ? "/admin/dashboard":"sign-in")
+  const token = localStorage.getItem("token");
+  const path = localStorage.getItem("path");
+  const redirectTo = token ? "/admin/dashboard" : path ? path : "/";
+  router.push(redirectTo);
  })
 </script>
 <template>

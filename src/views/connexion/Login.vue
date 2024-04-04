@@ -8,7 +8,7 @@ import IconGmail from "@/components/icons/IconGmail.vue";
 import { useRouter } from "vue-router";
 import { useMutation } from "@vue/apollo-composable";
 import { MUTATE_LOGIN } from "@/graphql/index.ts";
-import { onBeforeUnmount, onUpdated, ref } from "vue";
+import { onBeforeMount, onBeforeUnmount, onUpdated, ref } from "vue";
 import {useAuth,useErrors} from "@/stores/index.ts"
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
@@ -19,6 +19,7 @@ const auth = ref({
   password: "",
 });
 
+onBeforeMount(()=> localStorage.setItem("path","sign-in"))
 
 const authStore = useAuth();
 const errors = useErrors()
@@ -37,7 +38,10 @@ const onSignin = async () => {
       errorsRef.value = errors.fields
     }
 };
-onBeforeUnmount(() => errors.$reset());
+onBeforeUnmount(() =>{ 
+  errors.$reset()
+  localStorage.removeItem("path")
+});
 
 </script>
 

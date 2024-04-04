@@ -5,7 +5,7 @@ import Button from "@/components/designSystem/Button.vue";
 import IconFacebook from "@/components/icons/IconFacebook.vue";
 import IconGmail from "@/components/icons/IconGmail.vue";
 import Listbox from "@/components/designSystem/ListBox.vue";
-import { ref } from "vue";
+import { onBeforeMount, onBeforeUnmount, ref } from "vue";
 import { useMutation } from "@vue/apollo-composable";
 //import gql from "graphql-tag";
 // import CREATE_USER_MUTATION from "../../graphql/mutations.gql"
@@ -48,7 +48,7 @@ const getSelected = (params) => {
 const authStore = useAuth();
 const errors = useErrors()
 const errorsRef = ref()
-
+onBeforeMount(()=> localStorage.setItem("path","sign-up"))
 const onRegister = async () => {
   try {
     errors.$reset();
@@ -77,7 +77,10 @@ const onRegister = async () => {
     console.error("Error during sign-up:", error);
   }
 };
-
+onBeforeUnmount(() =>{ 
+  errors.$reset()
+  localStorage.removeItem("path")
+});
 </script>
 
 <template>

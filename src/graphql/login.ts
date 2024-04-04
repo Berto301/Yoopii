@@ -4,26 +4,20 @@ mutation login($user: LoginUserInput!) {
     login(user: $user) {
       user {
         enabled
-        personnalInfo {
-          name
-          firstname
-          profesionnalName
-          gender
-          adress
-          dateOfBirth
-        }
+        name
+        firstname
+        profesionnalName
+        gender
+        adress
+        birthOfDate
         email
         permissions
-        licence {
-          NIF_STAT
-          deliveryPlace
-          deliveryDate
-        }
-        accountSettings {
-          language
-          facebookSynchronisation
-          googleSynchronisation
-        }
+        NIF_STAT
+        deliveryPlace
+        deliveryDate
+        language
+        facebookSynchronisation
+        googleSynchronisation
       }
       token
     }
