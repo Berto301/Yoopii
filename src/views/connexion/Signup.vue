@@ -52,11 +52,24 @@ onBeforeMount(()=> localStorage.setItem("path","sign-up"))
 const onRegister = async () => {
   try {
     errors.$reset();
-    await authStore.register(
-      users.value.name,
-      users.value.email,
-      users.value.password,
-  );
+    if(users.value.accountType?._id==="agency"){
+      await authStore.registerAsEnterprise(
+        users.value.name,
+        users.value.email,
+        users.value.password,
+        users.value.accountType?._id || "agency",
+        enterprise.value.email,
+        enterprise.value.name
+      )
+    }else{
+
+      await authStore.register(
+        users.value.name,
+        users.value.email,
+        users.value.password,
+        users.value.accountType?._id || "user"
+    );
+    }
   
   if(errors.fields){
     errorsRef.value = errors.fields
@@ -133,14 +146,16 @@ onBeforeUnmount(() =>{
         <Input
           placeholder="Name"
           v-model="enterprise.name"
-         
+          :invalid="Boolean(errorsRef?.input?.enterpiseName)"
         />
+        <inputs-validation :error="errors.fields.input.enterpiseName" />
         <Input
           placeholder="Email"
           type="email"
           v-model="enterprise.email"
-         
+          :invalid="Boolean(errorsRef?.input?.enterpiseEmail)"
         />
+        <inputs-validation :error="errors.fields.input.enterpiseEmail" />
       </div>
       <Button type="button" color="light" class="w-full" @click="onRegister">
         Register

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { MUTATE_LOGIN,MUTATE_INSERT_USERS } from "@/graphql/index.ts";
+import { MUTATE_LOGIN,MUTATE_INSERT_USERS, MUTATE_INSERT_USERS_AND_ENTERPRISE } from "@/graphql/index.ts";
 import apolloClient from "../plugins/apollo";
 import gql from "graphql-tag";
 import { useRouter } from 'vue-router';
@@ -30,18 +30,40 @@ export const useAuth = defineStore('auth', () => {
           console.error("Error during sign-in:", error);
         }
     }
-    async function register (name:String,email:String,password:String){
+    async function register (name:String,email:String,password:String,accountType:String){
       try {
          const {createUser} = (await apolloClient.mutate({
           mutation:MUTATE_INSERT_USERS,
           variables:{
             name,
             email,
-            password
+            password,
+            type:accountType
           }
          }))?.data
 
          if (!createUser) return;
+         router.push("/sign-in");
+      } catch (error) {
+        console.error("Error during sign-up:", error);
+      }
+    }
+
+    async function registerAsEnterprise (name:String,email:String,password:String,accountType:String,enterpriseEmail:String,enterpriseName:String){
+      try {
+         const {createUserAndEnterprise} = (await apolloClient.mutate({
+          mutation:MUTATE_INSERT_USERS_AND_ENTERPRISE,
+          variables:{
+            name,
+            email,
+            password,
+            type:accountType,
+            enterpriseEmail,
+            enterpriseName
+          }
+         }))?.data
+
+         if (!createUserAndEnterprise) return;
          router.push("/sign-in");
       } catch (error) {
         console.error("Error during sign-up:", error);
@@ -55,6 +77,6 @@ export const useAuth = defineStore('auth', () => {
           await apolloClient.resetStore();
 
       }
-    return {login , userConnected:currentUser,logout,register}
+    return {login , userConnected:currentUser,logout,register,registerAsEnterprise}
   })
   
