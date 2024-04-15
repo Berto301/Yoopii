@@ -7,7 +7,7 @@ import {
   import { useErrors } from "@/stores/errors";
   import { setContext } from "@apollo/client/link/context";
   
-  console.log({uri: import.meta.env.VITE_GRAPHQL_URL})
+  // console.log({uri: import.meta.env.VITE_GRAPHQL_URL})
   // HTTP connection to the API
   const httpLink = createHttpLink({
     uri: import.meta.env.VITE_GRAPHQL_URL,
@@ -16,7 +16,7 @@ import {
   
   const errorHandler = onError(({ graphQLErrors }) => {
     
-    console.log({fields: graphQLErrors[0].extensions?.validation})
+    // console.log({fields: graphQLErrors[0].extensions?.validation})
     if (graphQLErrors)
     useErrors().$state = {
         message: graphQLErrors[0].message,

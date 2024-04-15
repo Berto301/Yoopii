@@ -34,7 +34,6 @@ onMounted(() => {
 
 onUpdated(() => {
     state.invalid = props.invalid
-    console.log("child updated", state.invalid);
 });
 
 const onUpdate = (event) => {
