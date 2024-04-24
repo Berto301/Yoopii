@@ -33,11 +33,12 @@ let authData = ref({
 
 const userStore =useUser()
 const {showError,showSuccess} = useNotification()
+const errors = useErrors()
  onBeforeMount(async()=> {
   if(userStore.currentUser) authData.value = userStore.currentUser 
   errors.$reset();
  })
- const errors = useErrors()
+
  const onUpdateAuth = async ()=> {
   try {    
     errors.$reset();

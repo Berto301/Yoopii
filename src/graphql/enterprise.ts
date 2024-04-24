@@ -19,6 +19,22 @@ query getEnterpriseInfo($id: String!) {
       enterpiseEmail
       enterpiseNIF_STAT
       enterpiseDeliveryPlace
+      enterpiseDeliveryDate
+    }
+  }
+`;
+
+export const MUTATE_UPDATE_AGENCY = gql`
+  mutation updateAgency($agency: UpdateAgencyInput!) {
+    updateAgency(updateAgencyInput: $agency) {
+      _id
+      enterpiseName
+      enterpiseAdress
+      enterpisePhone
+      enterpiseEmail
+      enterpiseNIF_STAT
+      enterpiseDeliveryPlace
+      enterpiseDeliveryDate
     }
   }
 `;

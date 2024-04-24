@@ -8,8 +8,9 @@ import PortFolio from "./PortFolio.vue";
 import Teams from "./Teams.vue";
 import Biography from "./Biography.vue"
 import Services from "./Services.vue"
+import Button from "@/components/designSystem/Button.vue";
 
-import { useAgency } from "@/stores";
+import { useAgency, useErrors, useNotification } from "@/stores";
 import { onBeforeMount, ref } from "vue";
 const authAgency = ref({
   enterpiseName:"",
@@ -17,14 +18,36 @@ const authAgency = ref({
   enterpisePhone:"",
   enterpiseEmail:"",
   enterpiseNIF_STAT:"",
-  enterpiseDeliveryPlace:""
+  enterpiseDeliveryPlace:"",
+  enterpiseDeliveryDate: new Date()
 });
 
 const agencyStore =useAgency()
+const {showError,showSuccess} = useNotification()
+const errors = useErrors()
 
  onBeforeMount(async()=> {
   if(agencyStore.currentAgency) authAgency.value = agencyStore.currentAgency
  })
+ const onUpdateAgency = async()=>{
+  errors.$reset();
+  console.log({authAgency})
+    await agencyStore.updateAgencyData({
+       _id:localStorage.getItem("enterpriseId"),
+       enterpiseName:authAgency.value.enterpiseName,
+       enterpiseAdress:authAgency.value.enterpiseAdress,
+       enterpisePhone:authAgency.value.enterpisePhone,
+       enterpiseEmail:authAgency.value.enterpiseEmail,
+       enterpiseNIF_STAT:authAgency.value.enterpiseNIF_STAT,
+       enterpiseDeliveryPlace:authAgency.value.enterpiseDeliveryPlace,
+       enterpiseDeliveryDate:authAgency.value.enterpiseDeliveryDate
+      })
+     if(errors.fields?.input?.enterpiseName || errors.fields?.input?.enterpiseEmail){
+       showError("An error occured!");
+     }else{
+       showSuccess("User updated succesfully");
+     }
+ }
 </script>
 <template>
   <div class="flex flex-col space-y-2">
@@ -39,7 +62,7 @@ const agencyStore =useAgency()
           </div>
         </div>
       </div>
-      <Profile :authAgency="authAgency" />
+      <Profile :authAgency="authAgency" :errors="errors" @update:authAgency="authAgency = $event" />
     </div>
     <Licence :authAgency="authAgency" />
     <SocialProfile />
@@ -47,5 +70,8 @@ const agencyStore =useAgency()
     <Teams />
     <Biography />
     <Services/>
+    <Button type="button" color="light" class="w-56" @click="onUpdateAgency">
+        Update
+    </Button>
   </div>
 </template>

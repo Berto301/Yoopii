@@ -24,6 +24,7 @@ watch(
 const onInput = (key, e) => {
   userData.value[key] = e.target.value;
   emit("update:authData", userData.value);
+  if(props.errors.fields.input?.[key]) delete props.errors.fields.input[key]
 };
 
 </script>
