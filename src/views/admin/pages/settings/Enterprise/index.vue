@@ -8,6 +8,23 @@ import PortFolio from "./PortFolio.vue";
 import Teams from "./Teams.vue";
 import Biography from "./Biography.vue"
 import Services from "./Services.vue"
+
+import { useAgency } from "@/stores";
+import { onBeforeMount, ref } from "vue";
+const authAgency = ref({
+  enterpiseName:"",
+  enterpiseAdress:"",
+  enterpisePhone:"",
+  enterpiseEmail:"",
+  enterpiseNIF_STAT:"",
+  enterpiseDeliveryPlace:""
+});
+
+const agencyStore =useAgency()
+
+ onBeforeMount(async()=> {
+  if(agencyStore.currentAgency) authAgency.value = agencyStore.currentAgency
+ })
 </script>
 <template>
   <div class="flex flex-col space-y-2">
@@ -22,9 +39,9 @@ import Services from "./Services.vue"
           </div>
         </div>
       </div>
-      <Profile />
+      <Profile :authAgency="authAgency" />
     </div>
-    <Licence />
+    <Licence :authAgency="authAgency" />
     <SocialProfile />
     <PortFolio />
     <Teams />

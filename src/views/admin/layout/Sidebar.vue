@@ -11,6 +11,7 @@ const props = defineProps({
 
 const permissions = ref(JSON.parse(localStorage.getItem("user"))?.permissions);
 const routes = props.routes.filter(route => permissions?.value.includes(route.key));
+const onClickPath = (e,path)=> localStorage.setItem("path",path)
 
 </script>
 <template>
@@ -21,7 +22,9 @@ const routes = props.routes.filter(route => permissions?.value.includes(route.ke
             <span class="block text-lightbrown text-md font-normal">Agent</span>
         </div>
         <div class="flex flex-col space-y-4"> 
-            <router-link class="flex items-center justify-start space-x-4 cursor-pointer px-3 hover:bg-transparent" v-for="route in routes" :key="route.name" :to="route?.layout+route?.path"> 
+            <router-link class="flex items-center justify-start space-x-4 cursor-pointer px-3 hover:bg-transparent" v-for="route in routes" :key="route.name" :to="route?.layout+route?.path" 
+            @click="(e)=>onClickPath(e,route?.layout+route?.path)"
+            > 
                 <span class="w-9 h-9"> 
                     <component :is="route?.icon" />
                 </span>

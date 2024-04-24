@@ -11,7 +11,6 @@ export const MUTATE_INSERT_USERS = gql`
         gender: "male"
         adress: "123 Main St"
         dateOfBirth: "2000-01-01"
-        birthOfDate: "2021-02-01"
         email: $email
         password: $password
         permissions: [
@@ -22,6 +21,8 @@ export const MUTATE_INSERT_USERS = gql`
           "reports"
           "settings"
         ] 
+        phone:"-"
+        CIN:"-"
         NIF_STAT: "0000", 
         deliveryPlace: "-",
         deliveryDate: "1990-01-01" 
@@ -38,7 +39,7 @@ export const MUTATE_INSERT_USERS = gql`
         profesionnalName
         gender
         adress
-        birthOfDate
+        dateOfBirth
         email
         permissions
         NIF_STAT
@@ -65,7 +66,6 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
         gender: "male"
         adress: "123 Main St"
         dateOfBirth: "2000-01-01"
-        birthOfDate: "2021-02-01"
         email: $email
         password: $password
         permissions: [
@@ -82,6 +82,8 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
         language: "en"
         facebookSynchronisation: "-"
         googleSynchronisation: "-"
+        phone:"-"
+        CIN:"-"
       }
       createEnterpiseInput: {
         enterpiseName: $enterpriseName
@@ -105,7 +107,7 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
         profesionnalName
         gender
         adress
-        birthOfDate
+        dateOfBirth
         email
         permissions
         NIF_STAT

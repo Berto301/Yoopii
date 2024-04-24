@@ -8,3 +8,17 @@ query getEnterpriseByUser($userId: String!) {
     }
   }
 `;
+
+export const GET_ENTERPRISE_INFO = gql`
+query getEnterpriseInfo($id: String!) {
+  getEnterpriseInfo(id: $id) {
+      _id
+      enterpiseName
+      enterpiseAdress
+      enterpisePhone
+      enterpiseEmail
+      enterpiseNIF_STAT
+      enterpiseDeliveryPlace
+    }
+  }
+`;

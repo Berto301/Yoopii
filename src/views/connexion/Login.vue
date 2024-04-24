@@ -12,7 +12,6 @@ import { onBeforeMount, onBeforeUnmount, onUpdated, ref } from "vue";
 import {useAuth,useErrors} from "@/stores/index.ts"
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
-const router = useRouter();
 
 const auth = ref({
   email: "",

@@ -12,7 +12,7 @@ export const MUTATE_LOGIN = gql`
         profesionnalName
         gender
         adress
-        birthOfDate
+        dateOfBirth
         email
         permissions
         NIF_STAT
