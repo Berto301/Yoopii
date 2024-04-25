@@ -1,17 +1,60 @@
 <script setup>
 import Disclosure from "@/components/Disclosure.vue"
 import Input from "@/components/designSystem/Input.vue"
-defineProps({
-   authAgency:Object
+import { getDateToSave } from "@/helpers/_functions";
+import { ref,watch } from "vue";
+
+const props = defineProps({
+  authAgency: Object,
+  errors: Object,
 });
+
+const emit = defineEmits(["update:authAgency"]);
+
+const agencyData = ref({});
+
+watch(
+  () => props.authAgency,
+  () => {
+    Object.assign(agencyData.value, props.authAgency);
+  },
+  { immediate: true }
+);
+
+const onChange = (key, e) => {
+  agencyData.value[key] = e.target.value;
+  emit("update:authAgency", agencyData.value);
+  if(props.errors.fields.input?.[key]) delete props.errors.fields.input[key]
+};
+const onChangeDate = (date) => {
+  agencyData.value.enterpiseDeliveryDate = getDateToSave(date)
+   emit("update:authAgency", agencyData.value);
+};
 </script>
 <template>
    <Disclosure>
       <template #title>Licence</template>
       <template #content>
-        <div class="w-1/3 grid grid-cols-2 grid-rows-[auto] gap-x-[2.375rem] gap-y-[0.688rem]"> 
-         <Input placeholder="NIF/STAT or License number" className=" w-full h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"  v-model="authAgency.enterpiseNIF_STAT"/> 
-         <Input placeholder="Delivery place" className=" w-full h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"  v-model="authAgency.enterpiseDeliveryPlace"/> 
+        <div class="w-1/2 grid grid-cols-3 grid-rows-[auto] gap-x-[2.375rem] gap-y-[0.688rem]"> 
+         <Input
+          placeholder="NIF/STAT or License number"
+          className=" w-full h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2" 
+          v-model="agencyData.enterpiseNIF_STAT"
+          @input="onChange('enterpiseNIF_STAT', $event)"
+         /> 
+         <Input 
+            placeholder="Delivery place" 
+            className=" w-full h-14 border placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2"  
+            v-model="agencyData.enterpiseDeliveryPlace"
+            @input="onChange('enterpiseDeliveryPlace', $event)"
+         /> 
+         <div class="relative">
+            <VDatePicker v-model="agencyData.enterpiseDeliveryDate"  @update:modelValue="onChangeDate" color="gray" >
+               <template #default="{ inputValue, inputEvents }">
+                  <Input placeholder="Delivery Date" className=" w-24 h-14 border pointer-events-none  placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2" :value="inputValue" v-on="inputEvents"  />
+               </template>
+            </VDatePicker>
+         </div>
         </div>
       </template>
    </Disclosure> 

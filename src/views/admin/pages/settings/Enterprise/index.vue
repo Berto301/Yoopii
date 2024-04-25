@@ -45,7 +45,7 @@ const errors = useErrors()
      if(errors.fields?.input?.enterpiseName || errors.fields?.input?.enterpiseEmail){
        showError("An error occured!");
      }else{
-       showSuccess("User updated succesfully");
+       showSuccess("Agency updated succesfully");
      }
  }
 </script>
@@ -64,7 +64,7 @@ const errors = useErrors()
       </div>
       <Profile :authAgency="authAgency" :errors="errors" @update:authAgency="authAgency = $event" />
     </div>
-    <Licence :authAgency="authAgency" />
+    <Licence :authAgency="authAgency" @update:authAgency="authAgency = $event"/>
     <SocialProfile />
     <PortFolio />
     <Teams />

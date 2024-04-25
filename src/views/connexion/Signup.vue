@@ -94,6 +94,7 @@ onBeforeUnmount(() =>{
   errors.$reset()
   localStorage.removeItem("path")
 });
+const onChange = (key) => errors?.fields?.input?.[key] && delete errors?.fields?.input?.[key]
 </script>
 
 <template>
@@ -109,12 +110,14 @@ onBeforeUnmount(() =>{
           type="email"
           v-model="users.email"
           :invalid="Boolean(errorsRef?.input?.email)"
+          @input="onChange('email')"
         />
         <inputs-validation :error="errors.fields.input.email" />
         <Input
           placeholder="Name"
           v-model="users.name"
           :invalid="Boolean(errorsRef?.input?.name)"
+          @input="onChange('name')"
         />
         <inputs-validation :error="errors.fields.input.name" />
         <Input
@@ -122,7 +125,7 @@ onBeforeUnmount(() =>{
           type="password"
           v-model="users.password"
           :invalid="Boolean(errorsRef?.input?.password)"
-         
+          @input="onChange('password')"
         />
         <inputs-validation :error="errors.fields.input.password" />
         <Input
@@ -130,6 +133,7 @@ onBeforeUnmount(() =>{
           type="password"
           v-model="users.checkPassword"
           :invalid="Boolean(errorsRef?.input?.password)"
+          @input="onChange('password')"
         />
         <inputs-validation :error="errors.fields.input.password" />
         <Listbox
@@ -147,6 +151,7 @@ onBeforeUnmount(() =>{
           placeholder="Name"
           v-model="enterprise.name"
           :invalid="Boolean(errorsRef?.input?.enterpiseName)"
+          @input="onChange('enterpiseName')"
         />
         <inputs-validation :error="errors.fields.input.enterpiseName" />
         <Input
@@ -154,6 +159,7 @@ onBeforeUnmount(() =>{
           type="email"
           v-model="enterprise.email"
           :invalid="Boolean(errorsRef?.input?.enterpiseEmail)"
+          @input="onChange('enterpiseEmail')"
         />
         <inputs-validation :error="errors.fields.input.enterpiseEmail" />
       </div>

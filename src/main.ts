@@ -1,4 +1,6 @@
 import './assets/main.css'
+import 'v-calendar/style.css';
+import {setupCalendar,DatePicker} from 'v-calendar';
 import { createApp, provide, h } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
@@ -37,5 +39,7 @@ const app = createApp({
 app.use(createPinia())
 app.use(router)
 app.use(apolloProvider)
+app.use(setupCalendar, {})
+app.component('VDatePicker', DatePicker)
 app.mount('#app')
 

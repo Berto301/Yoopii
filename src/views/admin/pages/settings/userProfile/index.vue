@@ -49,7 +49,7 @@ const errors = useErrors()
        firstname:authData.value.firstname,
        type:authData.value.type,
        profesionnalName:authData.value.profesionnalName,
-       gender:authData.value.gender,
+       gender:authData.value.gender?._id || authData.value.gender || "" ,
        adress:authData.value.adress,
        dateOfBirth:authData.value.dateOfBirth,
        email:authData.value.email,
@@ -92,7 +92,7 @@ const errors = useErrors()
       </div>
       <Profile :authData="authData"  :errors="errors" @update:authData="authData = $event"/>
     </div>
-    <Licence :authData="authData"/>
+    <Licence :authData="authData"  @update:authData="authData = $event"/>
 
     <AccountSettings />
 

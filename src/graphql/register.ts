@@ -5,12 +5,12 @@ export const MUTATE_INSERT_USERS = gql`
       createUserInput: {
         enabled: true
         name: $name
-        firstname: "-"
+        firstname: ""
         profesionnalName: $name
         type: $type
-        gender: "male"
-        adress: "123 Main St"
-        dateOfBirth: "2000-01-01"
+        gender: "man"
+        adress: ""
+        dateOfBirth: "2005-01-01"
         email: $email
         password: $password
         permissions: [
@@ -21,14 +21,14 @@ export const MUTATE_INSERT_USERS = gql`
           "reports"
           "settings"
         ] 
-        phone:"-"
-        CIN:"-"
-        NIF_STAT: "0000", 
-        deliveryPlace: "-",
-        deliveryDate: "1990-01-01" 
+        phone:""
+        CIN:""
+        NIF_STAT: "", 
+        deliveryPlace: "",
+        deliveryDate: "2005-01-01" 
         language: "en"
-        facebookSynchronisation: "-"
-        googleSynchronisation: "-"
+        facebookSynchronisation: ""
+        googleSynchronisation: ""
       }
     ) {
       user {
@@ -60,12 +60,12 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
       createUserInput: {
         enabled: true
         name: $name
-        firstname: "-"
+        firstname: ""
         profesionnalName: $name
         type: $type
-        gender: "male"
-        adress: "123 Main St"
-        dateOfBirth: "2000-01-01"
+        gender: "man"
+        adress: ""
+        dateOfBirth: "2005-01-01"
         email: $email
         password: $password
         permissions: [
@@ -76,23 +76,23 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
           "reports"
           "settings"
         ] 
-        NIF_STAT: "0000", 
-        deliveryPlace: "-",
-        deliveryDate: "1990-01-01" 
+        NIF_STAT: "", 
+        deliveryPlace: "",
+        deliveryDate: "2005-01-01" 
         language: "en"
-        facebookSynchronisation: "-"
-        googleSynchronisation: "-"
-        phone:"-"
-        CIN:"-"
+        facebookSynchronisation: ""
+        googleSynchronisation: ""
+        phone:""
+        CIN:""
       }
       createEnterpiseInput: {
         enterpiseName: $enterpriseName
         enterpiseEmail: $enterpriseEmail
         enterpiseAdress: "", 
-        enterpisePhone: "-",
-        enterpiseNIF_STAT: "0000", 
-        enterpiseDeliveryDate: "1990-01-01" 
-        enterpiseDeliveryPlace: "-"
+        enterpisePhone: "",
+        enterpiseNIF_STAT: "", 
+        enterpiseDeliveryDate: "2005-01-01" 
+        enterpiseDeliveryPlace: ""
       }
     ) {
       user {
