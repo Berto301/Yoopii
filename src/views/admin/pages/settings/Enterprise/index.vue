@@ -31,7 +31,6 @@ const errors = useErrors()
  })
  const onUpdateAgency = async()=>{
   errors.$reset();
-  console.log({authAgency})
     await agencyStore.updateAgencyData({
        _id:localStorage.getItem("enterpriseId"),
        enterpiseName:authAgency.value.enterpiseName,

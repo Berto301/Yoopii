@@ -1,4 +1,4 @@
-import { GET_AUTH_INFO, MUTATE_UPDATE_USERS } from './../graphql/user';
+import { GET_AUTH_INFO, MUTATE_UPDATE_AUTH_PASSWORD, MUTATE_UPDATE_USERS } from './../graphql/user';
 import { defineStore } from 'pinia'
 import { GET_USER_INFO} from "@/graphql/index.ts";
 import apolloClient from "../plugins/apollo";
@@ -38,6 +38,19 @@ export const useUser = defineStore('user', () => {
         console.log("error on update auth",error)
       }
     }
-    return {getInfo , updateUserData, currentUser}
+    async function updateUserPassword(data:object){
+      try {   
+        const {updatePassword} = (await apolloClient.mutate({
+          mutation:MUTATE_UPDATE_AUTH_PASSWORD,
+          variables:{
+            data
+          }
+        })).data 
+      } catch (error) {
+        console.log("error on update auth password",error)
+      }
+    }
+    
+    return {getInfo , updateUserData, updateUserPassword, currentUser}
   })
   

@@ -61,7 +61,7 @@ const errors = useErrors()
        deliveryDate: authData.value.deliveryDate,
        googleSynchronisation:authData.value.googleSynchronisation,
        facebookSynchronisation:authData.value.facebookSynchronisation,
-       language:authData.value.language
+       language:authData.value.language?._id
       })
      if(errors.fields?.input?.name || errors.fields?.input?.email){
        showError("An error occured!");
@@ -94,7 +94,7 @@ const errors = useErrors()
     </div>
     <Licence :authData="authData"  @update:authData="authData = $event"/>
 
-    <AccountSettings />
+    <AccountSettings :authData="authData"  @update:authData="authData = $event" />
 
     <SocialProfile />
 

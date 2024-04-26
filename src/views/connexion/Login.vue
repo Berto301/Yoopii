@@ -42,6 +42,8 @@ onBeforeUnmount(() =>{
   localStorage.removeItem("path")
 });
 
+const onChange = (key) => errors?.fields?.input?.[key] && delete errors?.fields?.input?.[key]
+
 </script>
 
 <template>
@@ -55,6 +57,7 @@ onBeforeUnmount(() =>{
         type="email"
         :invalid="Boolean(errorsRef?.input?.email)"
         v-model="auth.email"
+        @input="onChange('email')"
       />
       <div class="!mt-0">
         <inputs-validation :error="errors.fields.input.email" />
@@ -65,6 +68,7 @@ onBeforeUnmount(() =>{
           type="password"
           :invalid="Boolean(errorsRef?.input?.password)"
           placeholder="Your password"
+          @input="onChange('password')"
         />
         <div class="!mt-0">
           <inputs-validation :error="errors.fields.input.password" />

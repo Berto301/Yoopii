@@ -84,5 +84,12 @@ export const MUTATE_UPDATE_USERS = gql`
     }
   }
 `;
+export const MUTATE_UPDATE_AUTH_PASSWORD = gql`
+  mutation updatePassword($data: UpdatePasswordInput!) {
+    updatePassword(updatePasswordInput: $data) {
+      _id
+    }
+  }
+`;
 
 

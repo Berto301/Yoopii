@@ -13,3 +13,13 @@ export const PARITY_LISTS  =
       name: "Unspecified",
     },
   ];
+  export const LANGUAGE = [
+    {
+      _id: "fr",
+      name: "Fr",
+    },
+    {
+      _id: "en",
+      name: "En",
+    }
+  ];
