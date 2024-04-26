@@ -3,12 +3,14 @@
  import Header from "./Header.vue"
  import routes from "../../../router/mainRouter"
  import { useUser,useAgency } from "@/stores";
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
  
  const userStore =useUser()
  const agencyStore = useAgency()
  const router = useRouter()
+ const isCollapse = ref(true)
+ const onClickCollapse = ()=> isCollapse.value = !isCollapse.value
  onBeforeMount(async()=> {
       await userStore.getInfo(localStorage.getItem("authId"))
       if(userStore.currentUser.type==="agency" && localStorage.getItem("enterpriseId")){
@@ -21,9 +23,9 @@ import { useRouter } from "vue-router";
 </script>
 <template>
     <div class="flex min-h-screen space-x-4 bg-[#dfc5b9] p-4"> 
-        <Sidebar :routes="routes"/>
+        <Sidebar :routes="routes" :isCollapse="isCollapse"/>
         <div class="flex flex-col space-y-16 w-full"> 
-            <Header/>
+            <Header @onClickCollapse="onClickCollapse" :isCollapse="isCollapse"/>
             <router-view/>
             
         </div>
