@@ -8,3 +8,4 @@ export const getDateToSave = (date: string, timezone = "UTC", format="YYYY-MM-DD
         .toDate();
     return dateToSave;
   };
+export const removeOptionalParams = (path:string) => path?.replace(/\/\:.+\?/g, "");

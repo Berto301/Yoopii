@@ -1,7 +1,9 @@
 <script setup>
+import { removeOptionalParams } from "@/helpers/_functions";
 import DashboardIcon from "../../../components/icons/IconDashboard.vue" 
 import { useAuth } from "@/stores/index.ts"
 import { onMounted, ref, defineProps } from "vue";
+import {  useRoute } from "vue-router";
 const props = defineProps({
     routes: {
         type: Array,
@@ -13,7 +15,7 @@ const props = defineProps({
 const permissions = ref(JSON.parse(localStorage.getItem("user"))?.permissions);
 const routes = props.routes.filter(route => permissions?.value.includes(route.key));
 const onClickPath = (e,path)=> localStorage.setItem("path",path)
-
+const actualRoute = useRoute()
 </script>
 <template>
     <div :class="['rounded-lg shadow-lg bg-white flex flex-col space-y-16 p-4 transition duration-300 ease-in ',isCollapse ? 'w-60':'w-30']">
@@ -30,7 +32,7 @@ const onClickPath = (e,path)=> localStorage.setItem("path",path)
                     <component :is="route?.icon" />
                 </span>
                 
-                <span class="text-sm text-blackgray font-medium hover:text-lightbrown" v-if="isCollapse">
+                <span :class="['text-sm   hover:text-lightbrown ', removeOptionalParams(route?.layout+route?.path)===actualRoute.path ?'text-lightbrown font-bold':'text-blackgray font-medium']" v-if="isCollapse">
                     {{ route.name }}
                 </span>
             </router-link>
