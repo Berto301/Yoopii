@@ -23,3 +23,17 @@ export const PARITY_LISTS  =
       name: "En",
     }
   ];
+
+  export const FORMAT = [
+    {
+      _id: "DD/MM/YYYY",
+      name: "jour/mois/annee",
+    },
+    {
+      _id: "DD-MM-YYYY",
+      name: "jour-mois-annee",
+    },
+    {
+      _id: "YYYY, DD MM",
+      name: "Annee, jour mois",
+    }]

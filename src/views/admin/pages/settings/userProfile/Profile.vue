@@ -5,6 +5,7 @@ import { getDateToSave } from "@/helpers/_functions";
 import { defineProps, ref, watch, defineEmits, onBeforeMount } from "vue";
 import {PARITY_LISTS} from "@/helpers/_constants"
 import Listbox from "@/components/designSystem/ListBox.vue";
+import DatePicker from "@/components/designSystem/DatePicker.vue"
 
 const props = defineProps({
   authData: Object,
@@ -14,6 +15,7 @@ const props = defineProps({
 const emit = defineEmits(['update:authData']);
 
 const userData = ref({});
+
 
 watch(
   () => props.authData,
@@ -79,13 +81,10 @@ const getSelected = (params) => {
         :selected="userData.gender"
         @handle-click="getSelected"
         />
-    <div class="relative">
-      <VDatePicker v-model="userData.dateOfBirth"  @update:modelValue="onChangeDate" color="gray">
-          <template #default="{ inputValue, inputEvents }">
-            <Input className=" w-24 h-14 border pointer-events-none  placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2" :value="inputValue" v-on="inputEvents" placeholder="Date of Birth" />
-          </template>
-      </VDatePicker>
-    </div>
+     <DatePicker
+        :selected="userData.dateOfBirth"
+        @update:modelValue="onChangeDate"
+      />
     <div class="flex flex-col space-y-1"> 
       <Input
         placeholder="Email"
@@ -110,6 +109,7 @@ const getSelected = (params) => {
       v-model="userData.adress"
       @input="onChange('adress', $event)"
       />
+   
   </div>
 </template>
 

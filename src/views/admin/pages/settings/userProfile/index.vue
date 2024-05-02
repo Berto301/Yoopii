@@ -61,7 +61,7 @@ const errors = useErrors()
        deliveryDate: authData.value.deliveryDate,
        googleSynchronisation:authData.value.googleSynchronisation,
        facebookSynchronisation:authData.value.facebookSynchronisation,
-       language:authData.value.language?._id
+       language:authData.value.language?._id || "en"
       })
      if(errors.fields?.input?.name || errors.fields?.input?.email){
        showError("An error occured!");
@@ -102,8 +102,13 @@ const errors = useErrors()
     <Experience />
     <Biography />
     <Others />
-    <Button type="button" color="light" class="w-56" @click="onUpdateAuth">
-        Update
-    </Button>
+    <div class=" flex items-center space-x-2"> 
+      <Button type="button" color="light" class="w-56 h-14" @click="onUpdateAuth">
+          Update
+      </Button>
+      <Button type="button" color="danger" class="w-56 h-14" @click="onUpdateAuth">
+          Delete Account
+      </Button>
+    </div>
   </div>
 </template>

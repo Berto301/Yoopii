@@ -3,6 +3,7 @@ import Disclosure from "@/components/Disclosure.vue"
 import Input from "@/components/designSystem/Input.vue"
 import { getDateToSave } from "@/helpers/_functions";
 import { ref,watch } from "vue";
+import DatePicker from "@/components/designSystem/DatePicker.vue"
 
 const props = defineProps({
   authAgency: Object,
@@ -48,13 +49,10 @@ const onChangeDate = (date) => {
             v-model="agencyData.enterpiseDeliveryPlace"
             @input="onChange('enterpiseDeliveryPlace', $event)"
          /> 
-         <div class="relative">
-            <VDatePicker v-model="agencyData.enterpiseDeliveryDate"  @update:modelValue="onChangeDate" color="gray" >
-               <template #default="{ inputValue, inputEvents }">
-                  <Input placeholder="Delivery Date" className=" w-24 h-14 border pointer-events-none  placeholder:text-[#dfc5b9] border-lightbrown border-solid text-blackgray outline-none rounded-md  shadow-sm py-[0.4rem] pl-3 pr-10 m-2" :value="inputValue" v-on="inputEvents"  />
-               </template>
-            </VDatePicker>
-         </div>
+         <DatePicker
+            :selected="agencyData.enterpiseDeliveryDate"
+            @update:modelValue="onChangeDate"
+         />
         </div>
       </template>
    </Disclosure> 

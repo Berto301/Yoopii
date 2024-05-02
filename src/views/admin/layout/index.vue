@@ -2,13 +2,14 @@
  import Sidebar from "./Sidebar.vue"
  import Header from "./Header.vue"
  import routes from "../../../router/mainRouter"
- import { useUser,useAgency } from "@/stores";
+ import { useUser,useAgency, useConfiguration } from "@/stores";
 import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
  
  const userStore =useUser()
  const agencyStore = useAgency()
  const router = useRouter()
+ const configStore = useConfiguration()
  const isCollapse = ref(true)
  const onClickCollapse = ()=> isCollapse.value = !isCollapse.value
  onBeforeMount(async()=> {
@@ -16,7 +17,8 @@ import { useRouter } from "vue-router";
       if(userStore.currentUser.type==="agency" && localStorage.getItem("enterpriseId")){
         await agencyStore.getInfo(localStorage.getItem("enterpriseId"))
       }
-      if(localStorage.getItem("path").includes("admin")){
+      await configStore.getInfo(localStorage.getItem("authId"))
+      if(localStorage.getItem("path")?.includes("admin")){
         router.push(localStorage.getItem("path"));
       }
  })
