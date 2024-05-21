@@ -12,6 +12,10 @@ import Biography from "./Biography.vue";
 import Others from "./Others.vue";
 import { useErrors, useUser,useNotification } from "@/stores";
 import { onBeforeMount, ref } from "vue";
+import Modal from "@/components/designSystem/Modal.vue";
+import Badge from "@/components/designSystem/Badge.vue"
+import { useRouter } from "vue-router";
+
 let authData = ref({
       name:"",
       firstname:"",
@@ -28,12 +32,20 @@ let authData = ref({
       deliveryDate:new Date(),
       googleSynchronisation:"-",
       facebookSynchronisation:"-",
-      language:"en"
+      language:"en",
+      "linkedin" : "",
+      "facebook" : "",
+      "whatsapp" : "",
+      "portfolio" : "",
+      "siteweb" : "",
+      "note" : "",
 });
 
 const userStore =useUser()
 const {showError,showSuccess} = useNotification()
+const openModalDelete = ref(false)
 const errors = useErrors()
+const router = useRouter();
  onBeforeMount(async()=> {
   if(userStore.currentUser) authData.value = userStore.currentUser 
   errors.$reset();
@@ -61,7 +73,15 @@ const errors = useErrors()
        deliveryDate: authData.value.deliveryDate,
        googleSynchronisation:authData.value.googleSynchronisation,
        facebookSynchronisation:authData.value.facebookSynchronisation,
-       language:authData.value.language?._id || "en"
+       language:authData.value.language?._id || "en",
+       "linkedin" : authData.value.linkedin,
+        "facebook" :authData.value.facebook,
+        "whatsapp" : authData.value.whatsapp,
+        "portfolio" : authData.value.portfolio,
+        "siteweb" : authData.value.siteweb,
+        "note" : authData.value.note,
+        role:authData.value.role || 'Super Admin',
+        permissions:authData.value.permissions
       })
      if(errors.fields?.input?.name || errors.fields?.input?.email){
        showError("An error occured!");
@@ -72,11 +92,23 @@ const errors = useErrors()
     console.log("Error on update auth - Global:",error)
   }
  }
+
+ const onClickDelete = ()=> openModalDelete.value = !openModalDelete.value
+
+ const onDelete = async ()=> {
+  try {
+    await  userStore.deleteAgent(localStorage.getItem("authId"))
+    localStorage.clear()
+    router.push("/sign-in")
+  } catch (error) {
+     console.log(error)
+  }
+ }
 </script>
 <template>
   <div class="flex flex-col space-y-2">
     <div class="flex w-full space-x-2 bg-white px-2 py-3 rounded-md shadow-lg">
-      <div class="w-1/3 flex items-center justify-center">
+      <div class="w-1/3 flex items-center justify-center flex-col space-y-4">
         <div
           class="w-60 bg-gray-300 h-60 flex items-center justify-center relative"
         >
@@ -89,6 +121,9 @@ const errors = useErrors()
             <IconCamera />
           </div>
         </div>
+        <Badge 
+              :text="authData.role"
+        />
       </div>
       <Profile :authData="authData"  :errors="errors" @update:authData="authData = $event"/>
     </div>
@@ -96,19 +131,35 @@ const errors = useErrors()
 
     <AccountSettings :authData="authData"  @update:authData="authData = $event" />
 
-    <SocialProfile />
+    <SocialProfile :authData="authData"  @update:authData="authData = $event"/>
 
     <PortFolio />
     <Experience />
     <Biography />
-    <Others />
+    <Others :authData="authData"  @update:authData="authData = $event" />
     <div class=" flex items-center space-x-2"> 
       <Button type="button" color="light" class="w-56 h-14" @click="onUpdateAuth">
           Update
       </Button>
-      <Button type="button" color="danger" class="w-56 h-14" @click="onUpdateAuth">
+      <Button type="button" color="danger" class="w-56 h-14" @click="onClickDelete">
           Delete Account
       </Button>
     </div>
+    <Modal
+    :isOpen="openModalDelete"
+    submitText="Delete"
+    submitColor="danger"
+    @clickSave="onDelete"
+    @clickCancel="onClickDelete"
+  >
+    <template #forms>
+      <div class="text-blackgray text-2xl font-medium p-2"> 
+           Are you sure to delete this account? 
+      </div>
+      <div class="text-blackgray text-base font-normal italic p-2">
+        Delete this count, you will delete all informations according to it.
+      </div>
+    </template>
+  </Modal>
   </div>
 </template>

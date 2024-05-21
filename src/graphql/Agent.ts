@@ -1,14 +1,19 @@
 import gql from "graphql-tag";
-
-export const MUTATE_LOGIN = gql`
-  mutation login($user: LoginUserInput!) {
-    login(user: $user) {
-      user {
+export const MUTATE_INSERT_AGENT = gql`
+  mutation createAgent($createAgentInput: CreateAgentInput!) {
+    createAgent(createAgent: $createAgentInput) {
+      _id
+    }
+  }
+`;
+export const GET_AGENTS = gql`
+query getAgents($id: String!) {
+  getAgents(id: $id) {
         _id
         enabled
         name
-        type
         firstname
+        type
         profesionnalName
         gender
         adress
@@ -21,6 +26,8 @@ export const MUTATE_LOGIN = gql`
         language
         facebookSynchronisation
         googleSynchronisation
+        phone
+        CIN
         linkedin
         facebook
         whatsapp
@@ -28,8 +35,6 @@ export const MUTATE_LOGIN = gql`
         siteweb
         note
         role
-      }
-      token
     }
   }
 `;

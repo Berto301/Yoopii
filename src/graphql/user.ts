@@ -33,6 +33,13 @@ query getAuthInfo($id: String!) {
       googleSynchronisation
       phone
       CIN
+      linkedin
+      facebook
+      whatsapp
+      portfolio
+      siteweb
+      note
+      role
     }
   }
 `;
@@ -56,6 +63,13 @@ query getUserInfo($user: User!) {
       language
       facebookSynchronisation
       googleSynchronisation
+      linkedin
+      facebook
+      whatsapp
+      portfolio
+      siteweb
+      note
+      role
     }
   }
 `;
@@ -81,12 +95,28 @@ export const MUTATE_UPDATE_USERS = gql`
       googleSynchronisation
       phone
       CIN
+      linkedin
+      facebook
+      whatsapp
+      portfolio
+      siteweb
+      note
+      role
+      permissions
     }
   }
 `;
 export const MUTATE_UPDATE_AUTH_PASSWORD = gql`
   mutation updatePassword($data: UpdatePasswordInput!) {
     updatePassword(updatePasswordInput: $data) {
+      _id
+    }
+  }
+`;
+
+export const MUTATE_DELETE = gql`
+  mutation delete($id: String!) {
+    delete(id: $id){
       _id
     }
   }

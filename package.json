@@ -18,7 +18,7 @@
   "dependencies": {
     "@apollo/client": "^3.9.5",
     "@fortawesome/fontawesome-free": "^6.5.1",
-    "@headlessui/vue": "^1.7.17",
+    "@headlessui/vue": "^1.7.22",
     "@popperjs/core": "^2.11.8",
     "@vue/apollo-composable": "^4.0.1",
     "@vue/apollo-option": "^4.0.0",
@@ -31,6 +31,7 @@
     "moment-timezone": "^0.5.44",
     "pinia": "^2.1.7",
     "postcss": "^8.4.33",
+    "socket.io-client": "^4.7.5",
     "v-calendar": "^3.1.2",
     "vue": "^3.3.11",
     "vue-chart-3": "^3.1.8",

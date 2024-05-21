@@ -1,5 +1,6 @@
 <script setup>
 import Disclosure from "@/components/Disclosure.vue"
+
 </script>
 <template>
    <Disclosure>

@@ -28,7 +28,14 @@ export const MUTATE_INSERT_USERS = gql`
         deliveryDate: "2005-01-01" 
         language: "en"
         facebookSynchronisation: ""
-        googleSynchronisation: ""
+        googleSynchronisation:""
+        linkedin:""
+        facebook:""
+        whatsapp:""
+        portfolio:""
+        siteweb:""
+        note:""
+        role: "Super Admin"
       }
     ) {
       user {
@@ -48,6 +55,13 @@ export const MUTATE_INSERT_USERS = gql`
         language
         facebookSynchronisation
         googleSynchronisation
+        linkedin
+        facebook
+        whatsapp
+        portfolio
+        siteweb
+        note
+        role
       }
       token
     }
@@ -84,6 +98,13 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
         googleSynchronisation: ""
         phone:""
         CIN:""
+        linkedin:""
+        facebook:""
+        whatsapp:""
+        portfolio:""
+        siteweb:""
+        note:""
+        role: "Super Admin"
       }
       createEnterpiseInput: {
         enterpiseName: $enterpriseName
@@ -93,6 +114,13 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
         enterpiseNIF_STAT: "", 
         enterpiseDeliveryDate: "2005-01-01" 
         enterpiseDeliveryPlace: ""
+        linkedin:""
+        facebook:""
+        whatsapp:""
+        services:[
+          "vente",
+          "location"
+        ]
       }
     ) {
       user {
@@ -116,6 +144,13 @@ export const MUTATE_INSERT_USERS_AND_ENTERPRISE = gql`
         language
         facebookSynchronisation
         googleSynchronisation
+        linkedin
+        facebook
+        whatsapp
+        portfolio
+        siteweb
+        note
+        role
       }
       token
     }

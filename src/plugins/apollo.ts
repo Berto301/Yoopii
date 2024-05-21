@@ -20,7 +20,7 @@ import {
     if (graphQLErrors)
     useErrors().$state = {
         message: graphQLErrors[0].message,
-        // category: graphQLErrors[0].extensions.category,
+        category: graphQLErrors[0].extensions.category,
         fields: graphQLErrors[0].extensions.validation ?? { input: {} },
       };
   });

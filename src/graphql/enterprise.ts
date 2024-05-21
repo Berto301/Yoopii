@@ -20,6 +20,10 @@ query getEnterpriseInfo($id: String!) {
       enterpiseNIF_STAT
       enterpiseDeliveryPlace
       enterpiseDeliveryDate
+      linkedin
+      facebook
+      whatsapp
+      services
     }
   }
 `;
@@ -35,6 +39,10 @@ export const MUTATE_UPDATE_AGENCY = gql`
       enterpiseNIF_STAT
       enterpiseDeliveryPlace
       enterpiseDeliveryDate
+      linkedin
+      facebook
+      whatsapp
+      services
     }
   }
 `;

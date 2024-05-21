@@ -37,3 +37,13 @@ export const PARITY_LISTS  =
       _id: "YYYY, DD MM",
       name: "Annee, jour mois",
     }]
+
+  export const PERMISSIONS = 
+    [
+      { id: 'dashboard', value: 'Dashboard' },
+      { id: 'chat', value: 'Chat' },
+      { id: 'property', value: 'Property' },
+      { id: 'terrain', value: 'Terrain' },
+      { id: 'reports', value: 'Reports' },
+      { id: 'settings', value: 'Settings' },
+    ]

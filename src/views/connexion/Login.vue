@@ -9,7 +9,7 @@ import { useRouter } from "vue-router";
 import { useMutation } from "@vue/apollo-composable";
 import { MUTATE_LOGIN } from "@/graphql/index.ts";
 import { onBeforeMount, onBeforeUnmount, onUpdated, ref } from "vue";
-import {useAuth,useErrors} from "@/stores/index.ts"
+import {useAuth,useErrors, useNotification} from "@/stores/index.ts"
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
@@ -22,6 +22,7 @@ onBeforeMount(()=> localStorage.setItem("path","sign-in"))
 
 const authStore = useAuth();
 const errors = useErrors()
+const {showError} = useNotification()
 
 const errorsRef = ref()
 const onSignin = async () => {
@@ -30,11 +31,12 @@ const onSignin = async () => {
       email: auth.value.email,
       password: auth.value.password
     })
-    if(errors.fields){
-      toast.error("An error occured!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+    console.log({errorsMessage:errors.category})
+    if(errors.fields?.input?.email || errors.fields.input.password){
+      showError('Please fill the required fields')
       errorsRef.value = errors.fields
+    }else if(errors.message==='Cannot return null for non-nullable field Mutation.login.'){
+      showError("User does not exist")
     }
 };
 onBeforeUnmount(() =>{ 

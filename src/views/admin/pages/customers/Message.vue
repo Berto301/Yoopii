@@ -1,14 +1,14 @@
 <script setup>
-import Agent from "../../../../assets/images/agent.jpg";
+import Agent from "@/assets/images/agent.jpg";
 import { formatRelative, subDays } from "date-fns";
 import { enUS } from "date-fns/locale";
 import moment from "moment-timezone";
-import TextArea from "../../../../components/designSystem/TextArea.vue";
-import Button from "../../../../components/designSystem/Button.vue";
-import IconSend from "../../../../components/icons/IconSend.vue";
-import IconAttach from "../../../../components/icons/IconAttach.vue";
-import IconVisit from "../../../../components/icons/IconVisit.vue";
-import IconPlus from "../../../../components/icons/IconPlus.vue";
+import TextArea from "@/components/designSystem/TextArea.vue";
+import Button from "@/components/designSystem/Button.vue";
+import IconSend from "@/components/icons/IconSend.vue";
+import IconAttach from "@/components/icons/IconAttach.vue";
+import IconVisit from "@/components/icons/IconVisit.vue";
+import IconPlus from "@/components/icons/IconPlus.vue";
 import { ref } from "vue";
 
 const showAdd = ref(false);

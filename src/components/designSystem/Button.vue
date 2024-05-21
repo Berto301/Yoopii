@@ -22,7 +22,7 @@ const COLORS={
 
 
 <template>
-    <button :type="type" :class="'items-center px-4 py-2  border  rounded-md font-semibold text-[14px]  outline-none  tracking-widest transition ease-in-out duration-150 '+COLORS[color]">
+    <button :type="type" :class="'items-center px-4 py-2  border  rounded-md font-semibold text-[14px]  outline-none  tracking-widest transition ease-in-out duration-150 disabled:cursor-not-allowed disabled:bg-[#F5F5F5] disabled:text-[#9E9E9E] '+COLORS[color]">
         <slot />
     </button>
 </template>

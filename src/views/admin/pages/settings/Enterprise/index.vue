@@ -19,13 +19,19 @@ const authAgency = ref({
   enterpiseEmail:"",
   enterpiseNIF_STAT:"",
   enterpiseDeliveryPlace:"",
-  enterpiseDeliveryDate: new Date()
+  enterpiseDeliveryDate: new Date(),
+  "linkedin" : "",
+  "facebook" : "",
+  "whatsapp" : "",
+  services:[
+          "vente",
+          "location"
+        ]
 });
 
 const agencyStore =useAgency()
 const {showError,showSuccess} = useNotification()
 const errors = useErrors()
-
  onBeforeMount(async()=> {
   if(agencyStore.currentAgency) authAgency.value = agencyStore.currentAgency
  })
@@ -39,7 +45,14 @@ const errors = useErrors()
        enterpiseEmail:authAgency.value.enterpiseEmail,
        enterpiseNIF_STAT:authAgency.value.enterpiseNIF_STAT,
        enterpiseDeliveryPlace:authAgency.value.enterpiseDeliveryPlace,
-       enterpiseDeliveryDate:authAgency.value.enterpiseDeliveryDate
+       enterpiseDeliveryDate:authAgency.value.enterpiseDeliveryDate,
+       "linkedin" : authAgency.value.linkedin,
+      "facebook" :authAgency.value.facebook,
+      "whatsapp" : authAgency.value.whatsapp,
+      services: authAgency.value.services || [
+      "vente",
+      "location"
+      ]
       })
      if(errors.fields?.input?.enterpiseName || errors.fields?.input?.enterpiseEmail){
        showError("An error occured!");
@@ -64,13 +77,18 @@ const errors = useErrors()
       <Profile :authAgency="authAgency" :errors="errors" @update:authAgency="authAgency = $event" />
     </div>
     <Licence :authAgency="authAgency" @update:authAgency="authAgency = $event"/>
-    <SocialProfile />
+    <SocialProfile :authAgency="authAgency" @update:authAgency="authAgency = $event" />
     <PortFolio />
     <Teams />
     <Biography />
-    <Services/>
-    <Button type="button" color="light" class="w-56" @click="onUpdateAgency">
-        Update
-    </Button>
+    <Services :authAgency="authAgency" @update:authAgency="authAgency = $event"/>
+    <div class=" flex items-center space-x-2"> 
+      <Button type="button" color="light" class="w-56 h-14" @click="onUpdateAgency">
+          Update
+      </Button>
+      <Button type="button" color="danger" class="w-56 h-14" @click="onUpdateAuth">
+          Delete Agency Account
+      </Button>
+    </div>
   </div>
 </template>

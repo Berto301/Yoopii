@@ -4,12 +4,13 @@ import apolloClient from "../plugins/apollo";
 import gql from "graphql-tag";
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
+import { useNotification } from './toast';
 
 
 export const useAuth = defineStore('auth', () => {
     const currentUser = ref()
     const router = useRouter();
-   
+    const {showError} = useNotification()
    
     async function login (user:Object){
         try {
@@ -20,6 +21,7 @@ export const useAuth = defineStore('auth', () => {
                 }
             })).data;
           if (!login) return;
+          if(!login.user.enabled)return showError("Your account is still disabled")
           const authorizationHeader = `Bearer ${login.token}`;
           localStorage.setItem("token", authorizationHeader);
           localStorage.setItem("user", JSON.stringify(login.user));
@@ -47,7 +49,8 @@ export const useAuth = defineStore('auth', () => {
               // if(!getEnterpriseByUser) return
             }
           }
-          router.push("/admin/dashboard")
+          if(["agency","agent_independent"]?.includes(login.user.type)) 
+            router.push("/admin/dashboard")
         } catch (error) {
           console.error("Error during sign-in:", error);
         }

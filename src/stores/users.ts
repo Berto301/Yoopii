@@ -1,6 +1,6 @@
-import { GET_AUTH_INFO, MUTATE_UPDATE_AUTH_PASSWORD, MUTATE_UPDATE_USERS } from './../graphql/user';
+import { GET_AUTH_INFO, MUTATE_DELETE, MUTATE_UPDATE_AUTH_PASSWORD, MUTATE_UPDATE_USERS } from './../graphql/user';
 import { defineStore } from 'pinia'
-import { GET_USER_INFO} from "@/graphql/index.ts";
+// import { GET_USER_INFO} from "@/graphql/";
 import apolloClient from "../plugins/apollo";
 import {  ref } from 'vue';
 
@@ -50,7 +50,19 @@ export const useUser = defineStore('user', () => {
         console.log("error on update auth password",error)
       }
     }
+    async function deleteAgent(id:string){
+      try {   
+        const {delete:statusDeleted} = (await apolloClient.mutate({
+          mutation:MUTATE_DELETE,
+          variables:{
+            id
+          }
+        })).data 
+      } catch (error) {
+        console.log("error on delete auth password",error)
+      }
+    }
     
-    return {getInfo , updateUserData, updateUserPassword, currentUser}
+    return {getInfo , updateUserData, updateUserPassword,deleteAgent, currentUser}
   })
   

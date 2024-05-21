@@ -2,25 +2,32 @@
  import Sidebar from "./Sidebar.vue"
  import Header from "./Header.vue"
  import routes from "../../../router/mainRouter"
- import { useUser,useAgency, useConfiguration } from "@/stores";
+ import { useUser,useAgency, useConfiguration, useAgentStore } from "@/stores";
 import { onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
+import { socket } from "@/socket";
  
  const userStore =useUser()
  const agencyStore = useAgency()
  const router = useRouter()
  const configStore = useConfiguration()
  const isCollapse = ref(true)
+ const {getAgents} = useAgentStore()
  const onClickCollapse = ()=> isCollapse.value = !isCollapse.value
  onBeforeMount(async()=> {
       await userStore.getInfo(localStorage.getItem("authId"))
       if(userStore.currentUser.type==="agency" && localStorage.getItem("enterpriseId")){
         await agencyStore.getInfo(localStorage.getItem("enterpriseId"))
+        await getAgents(localStorage.getItem("enterpriseId"))
       }
       await configStore.getInfo(localStorage.getItem("authId"))
       if(localStorage.getItem("path")?.includes("admin")){
         router.push(localStorage.getItem("path"));
       }
+      socket.on('createAgent', (newAgent) => {
+        debugger
+      console.log({newAgent})
+      });
  })
 </script>
 <template>
